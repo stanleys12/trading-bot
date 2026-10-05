@@ -1,0 +1,20 @@
+{
+ "spec": {
+  "name": "sprint35_qhour_taker_imbalance_liquid",
+  "hypothesis": "Strong taker buy/sell volume imbalance in the first quarter-hour after open predicts short-horizon continuation in liquid large-cap names, net of realistic costs at T1 fees.",
+  "power_argument": "Prior sprints (n=4180, t=-19.8) imply ~110bps per-trade std; at n>=300 trades, min detectable edge at t=2 is ~12.7bps, comfortably above T1 round-trip cost (~2-4bps) on liquid names \u2014 a real signal should be detectable even after costs.",
+  "symbols": "SPY_top50_liquid_by_ADV",
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 15,
+   "imbalance_threshold_pct": 65,
+   "confirm_with": "qhour_open"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

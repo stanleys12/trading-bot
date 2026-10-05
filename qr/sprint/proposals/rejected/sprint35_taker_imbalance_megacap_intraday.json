@@ -1,0 +1,27 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_megacap_intraday",
+  "hypothesis": "Extreme taker buy/sell imbalance (top/bottom decile) in liquid mega-caps predicts short-horizon (15-30min) continuation, distinct from the two failed thin-altbasket tests.",
+  "power_argument": "Pooled stdev ~95bps/trade from sprint32/34; n=360 (6 symbols x 3 entries/day x 20d) -> SE~5.5bps -> min detectable edge ~11bps at t~2.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_decile": "top/bottom 10%",
+   "lookback_bars": 5,
+   "entry_confirmation": "next bar open"
+  },
+  "hold_minutes": 20,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

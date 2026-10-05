@@ -1,0 +1,17 @@
+{
+ "name": "sprint01_breakout_60m",
+ "family": "sprint-intraday",
+ "hypothesis": "60-min rolling-high breakout on BTCUSDT/ETHUSDT 1-min bars predicts continued upward drift over the next 60 minutes (short-horizon order-flow persistence, distinct mechanism from closed daily-equity momentum door exp23)",
+ "power_argument": "Using C0's measured net_bps dispersion (~33bp std, 30-min hold, T2) as a volatility proxy: at n=300 the minimum detectable edge at t=2 is ~2*33/sqrt(300)=3.8bp, far below the ~20bp T2 round-trip plus slippage floor, so the design is powered to detect any deployable-sized edge. Expected validation trades: 2 symbols x ~92 days x cap 10/day ceiling = up to 1840 possible entries; realistic breakout frequency should clear the 300 floor.",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "breakout",
+ "params": {
+  "window": 60
+ },
+ "hold_minutes": 60,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

@@ -1,0 +1,18 @@
+{
+ "spec": {
+  "name": "sprint33_predmarket_spread_monitor_kalshi_polymarket",
+  "hypothesis": "Cross-venue Kalshi vs Polymarket price discrepancies on matched-resolution binary contracts persist net of fees (documented ~$40M/yr industry-wide, 1.5-4.5% spreads); BACKLOG Priority 2, doors verified open 08-27.",
+  "power_argument": "MEASUREMENT PHASE, not a scored trade: log matched-contract spread frequency/size net of stated fees for >=300 matched-contract-days before proposing any trade spec. Registering a T1-T3 trade spec now, before the base rate is measured, would violate the POWER rule (exp14 lesson) since expected trade count and min detectable edge are unknown.",
+  "symbols": [],
+  "signal": "NOT IN FACTORY -- requires new Kalshi + Polymarket API loaders and a resolution-criteria TEXT matcher (not title matching)",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "n/a",
+  "entry_per_day_cap": 0,
+  "prerequisite": "BLOCKED until data.py gains Kalshi + Polymarket loaders and the matcher. Do not register a scored trade spec before the monitor produces a measured spread distribution."
+ },
+ "errors": [
+  "unknown signal NOT IN FACTORY -- requires new Kalshi + Polymarket API loaders and a resolution-criteria TEXT matcher (not title matching)",
+  "fee_tier must be T0..T3"
+ ]
+}

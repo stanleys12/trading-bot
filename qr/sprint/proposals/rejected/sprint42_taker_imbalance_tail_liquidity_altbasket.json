@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_tail_liquidity_altbasket",
+  "hypothesis": "Extreme smoothed taker-buy imbalance (EFMA 2025 order-flow) predicts short-horizon continuation, concentrated in less-liquid, higher-turnover names (Liu-Tsyvinski cross-section, cited sprint18/26). Taker_imbalance failed on majors and liquid alts (sprints 10/12/13/19-23) but was never run on the tail-liquidity basket, the last empty cell of the signal x universe matrix.",
+  "power_argument": "Same 8-symbol tail basket and validation window as sprint26, which realized 4413 validation trades under identical caps, so n>=300 is near-certain even with BTCSTUSDT/MATICUSDT gaps. Per-trade stdev ~60bps (sprint21 back-solve); min detectable edge at n=300, t=2 ~6.9bps net, and PASS requires gross above the ~26bp T2 round-trip cost. Criteria can fail under the null: C0 random entries on this pipeline must net about -26bp.",
+  "symbols": [
+   "BTCSTUSDT",
+   "MATICUSDT",
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.0
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 5
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

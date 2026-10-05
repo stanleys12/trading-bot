@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint25_predmkt_spread_monitor",
+  "hypothesis": "Kalshi/Polymarket cross-venue spreads on matched-resolution-text markets exceed combined fees (documented ~1.5-4.5%, IMDEA); measure before trading.",
+  "power_argument": "Measurement-only T0 pass first: need >=300 matched-market-days to estimate spread frequency/size before any traded spec can be powered; no traded verdict until measured.",
+  "symbols": [
+   "KALSHI/POLYMARKET-matched-pairs"
+  ],
+  "signal": "predmkt_spread (NOT YET IN factory.py \u2014 needs new loader + signal fn)",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "T1",
+  "entry_per_day_cap": null,
+  "prerequisite": "BLOCKED until factory gains a Kalshi+Polymarket public-API loader and resolution-text matcher. Do not register/run before that lands."
+ },
+ "errors": [
+  "unknown signal predmkt_spread (NOT YET IN factory.py \u2014 needs new loader + signal fn)"
+ ]
+}

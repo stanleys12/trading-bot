@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_qhour_megacap",
+  "hypothesis": "At quarter-hour marks, prior-window taker buy/sell imbalance predicts short-horizon continuation on liquid megacap names; net edge survives costs where illiquid-basket tests (sprint32/34) did not, because spread/impact drag is far lower.",
+  "power_argument": "8 symbols x ~90 trading days x 6 qhour marks/day, filtered to |imbalance-0.5|>0.15 (~15-20% fire rate) yields est. 650-850 entries, safely >=300. Return SD ~40bps intraday => SE~1.5bps at n=650 => min detectable net edge ~4-5bps at t=3, well below the ~35bps effect sizes that already failed on altbasket, so this is a real, distinguishable test not a rerun of a known-null.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "META",
+   "GOOGL"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_window_min": 15,
+   "imbalance_threshold": 0.15,
+   "gate": "qhour_open"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

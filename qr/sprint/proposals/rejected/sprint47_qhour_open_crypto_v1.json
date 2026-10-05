@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint47_qhour_open_crypto_v1",
+  "hypothesis": "At quarter-hour boundaries, periodic algorithmic flow (arXiv 2607.09426) makes the next 15m drift positive when the prior 15m return is positive and the prior taker-buy share exceeds 0.5 by imb_min. Boundary-timed entry; the share is a filter only. Adjacent to the closed standalone taker_imbalance family (sprint21-23), disclosed.",
+  "power_argument": "BTC and ETH, about 92 validation days, boundary entries with cap 10/day per symbol; expected validation n well above the 300 floor (to be confirmed by the auditor dry-run; if n<300, mark UNPOWERED and do not score). 15m sigma ~25-30bp gives SE ~1bp at n=1000, so min detectable edge at t=2 is ~2bp, below fees. T2 round trip is ~22bp+ with slippage, so PASS needs gross >~24bp; this fails under the null.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "qhour_open",
+  "params": {
+   "lookback": 15,
+   "imb_min": 0.02
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 10,
+  "prerequisite": "C0/C1 pass on the current loader; auditor dry-run n>0 on research and validation; confirm the registrar does not reject on the closed-door term list."
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

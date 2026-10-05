@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint36_taker_imbalance_fade_short_majors",
+  "hypothesis": "sprint22/23 scored 'fade_extreme' specs LONG due to a confirmed engine defect (params.direction/side unread). This re-scores sprint22's majors cell SHORT after extreme buy-imbalance.",
+  "power_argument": "sprint22 already realized n=475 validation trades on this exact universe/window/threshold (>300 floor). Sign-flipping its realized stats implies short mean_net ~+11.1bps at t~+9.3, above PASS bar and T1 cost floor -- a confirmatory re-score, not a blind search.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_threshold": "p90",
+   "lookback_window_minutes": 5,
+   "direction": "fade_extreme",
+   "side": "short"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3,
+  "prerequisite": "HELD -- do not run until run_split is patched to invert PnL when params.side=='short'; unmodified it silently reproduces sprint22's long result under a new name."
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

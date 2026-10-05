@@ -1,0 +1,24 @@
+{
+ "name": "sprint31_meanrev_10m_tail_liquidity_altbasket",
+ "hypothesis": "Bid-ask bounce / thin-book overreaction (microstructure noise, distinct mechanism from sprint26's momentum test) should be strongest, not weakest, in the least-liquid names. Same tail-liquidity/delisted basket as sprint26, applying sprint02/17's frozen meanrev signal to the one basket it hasn't been run on.",
+ "power_argument": "T2 cost floor ~26bp, dispersion ~33bp (sprint26 calibration) -> min detectable edge at n=300,t=2 ~3.8bp. sprint26 realized 4413 validation trades on this exact basket/cap; conservatively expect >=2000, clearing 300 with wide margin.",
+ "symbols": [
+  "BTCSTUSDT",
+  "MATICUSDT",
+  "GALAUSDT",
+  "SANDUSDT",
+  "MANAUSDT",
+  "CHZUSDT",
+  "ONEUSDT",
+  "ZILUSDT"
+ ],
+ "signal": "meanrev",
+ "params": {
+  "ret_window": 10,
+  "z_window": 120,
+  "threshold": 2.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

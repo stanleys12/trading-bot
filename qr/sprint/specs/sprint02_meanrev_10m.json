@@ -1,0 +1,19 @@
+{
+ "name": "sprint02_meanrev_10m",
+ "family": "sprint-intraday",
+ "hypothesis": "A sharp short-horizon down-move (10-min return z-score < -2 vs trailing 2h) on BTCUSDT/ETHUSDT 1-min bars predicts a rebound over the next 30 minutes (order-flow overreaction reversion, distinct mechanism from the failed continuation signal in sprint01)",
+ "power_argument": "Using sprint01's measured net_bps dispersion (~35bp std at similar hold length, T2) as a volatility proxy: at n=300 the minimum detectable edge at t=2 is ~2*35/sqrt(300)=4.0bp, well below the ~20bp T2 round-trip+slippage floor, so the design is powered to detect any deployable-sized edge. Expected validation trades: 2 symbols x ~92 days x cap 10/day = up to 1840 possible entries; z<-2 events at 1-min granularity should clear the 300 floor easily.",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "meanrev",
+ "params": {
+  "ret_window": 10,
+  "z_window": 120,
+  "threshold": 2.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

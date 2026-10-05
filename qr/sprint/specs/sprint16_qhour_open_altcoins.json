@@ -1,0 +1,23 @@
+{
+ "name": "sprint16_qhour_open_altcoins",
+ "hypothesis": "Extends sprint09's qhour-boundary VWAP-slicing periodicity mechanism (arXiv 2607.09426, majors FAIL) to the same 8-alt basket used in sprint04/sprint13, closing the last untested cell in the 5-signal x {majors,alts} coverage matrix.",
+ "power_argument": "Using C0/C1 dispersion (~33bp std) and T2 floor (~26bp): min detectable edge at n=300,t=2 is ~3.8bp, well below cost floor. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; sprint04/sprint13 realized 5888/7269 trades under identical caps on this basket, so n>=300 is near-certain.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

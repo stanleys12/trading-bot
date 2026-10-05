@@ -1,0 +1,17 @@
+{
+ "name": "sprint09_qhour_open_15m",
+ "hypothesis": "Quarter-hour boundary flow clustering (arXiv 2607.09426): entering at the :00/:15/:30/:45 boundary when prior-interval drift and prior taker imbalance agree predicts continued 15m drift. Distinct periodicity mechanism from sprint05 taker_imbalance (continuous z-score persistence), which failed at near-zero gross edge.",
+ "power_argument": "C0/C1 measured dispersion ~33bp std, T2 cost floor ~26bp round-trip -> min detectable edge at n=300, t=2 is ~3.8bp, well below cost floor (same argument as sprint05). Boundary bars (m%15==0) = 96/day/symbol; even a conservative 10% pass rate on the ret_prior>0 & imb>imb_min filters yields ~880 raw candidates/symbol over the ~92-day validation window; entry_per_day_cap enforces up to 10*92*2=1840 possible entries, clearing the 300 floor with margin.",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

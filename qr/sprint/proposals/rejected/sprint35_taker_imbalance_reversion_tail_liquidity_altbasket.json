@@ -1,0 +1,30 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_reversion_tail_liquidity_altbasket",
+  "hypothesis": "Short-window taker buy/sell volume imbalance reversion (frozen definition from sprint22/23, the higher-hit-rate of the two taker_imbalance variants) closes the last untested cell in the 5-signal x 3-universe matrix by applying it to the tail-liquidity/delisted altbasket, where 4 other signals already failed at consistent ~-25 to -36bps net despite near-zero gross alpha -- testing whether cost structure alone explains that pattern.",
+  "family": "sprint-intraday",
+  "power_argument": "Comparable taker_imbalance-reversion runs (sprint22 n=475, sprint23 n=1520) imply per-trade SD~28bps; at floor n=300, MDE(t=2)~3.2bps, well below T2 all-in cost (~11-13bps), so a deployable edge would be detected. Expected realized n on this basket ~500-1500 based on sprint21/23/26/31/32/34 analogues, exceeding the 300 floor.",
+  "symbols": [
+   "BTCSTUSDT",
+   "MATICUSDT",
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "variant": "reversion",
+   "definition": "frozen, identical to sprint22/23 registered taker_imbalance-reversion threshold"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 10,
+  "split": "research 2024-01..2026-04 / validation 2026-05..07; sealed 2026-08+"
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

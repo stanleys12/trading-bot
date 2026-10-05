@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint35_predmkt_spread_monitor",
+  "hypothesis": "Cross-venue Kalshi/Polymarket price spreads on shared-resolution-text markets exceed round-trip cost after matching settlement criteria (not just titles), at measurable frequency.",
+  "power_argument": "T0 (measurement only, never a verdict) \u2014 no trade-count gate. Success criterion: log >=300 matched-market observations over 14 days with spread distribution + resolution-mismatch rate, before any T-tier trading spec is proposed.",
+  "symbols": "n/a \u2014 market-pair identifiers, not tickers; universe = overlapping Kalshi/Polymarket markets",
+  "signal": "NEW \u2014 not in factory SIGNALS{}; requires new data connector, no factory extension exists yet",
+  "params": {
+   "match_method": "resolution-criteria text match, not title match"
+  },
+  "hold_minutes": "n/a",
+  "fee_tier": "T0",
+  "entry_per_day_cap": "n/a (monitoring only)"
+ },
+ "errors": [
+  "unknown signal NEW \u2014 not in factory SIGNALS{}; requires new data connector, no factory extension exists yet",
+  "T0 is mechanism-check only, cannot be the registered tier"
+ ]
+}

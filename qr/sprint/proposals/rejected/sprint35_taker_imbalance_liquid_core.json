@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_core",
+  "hypothesis": "Short-horizon taker-side order flow imbalance predicts next-N-minute directional drift in liquid, tight-spread names; prior failures (sprint32/34) were cost-driven from tail-liquidity venues, not signal absence, so testing on liquid instruments should reveal whether any exploitable edge exists before cost.",
+  "power_argument": "8-symbol liquid-core basket x entry_per_day_cap=3 = up to 24 entries/day; >=300 validated trades reached in ~13 trading days within the sealed test window. sprint32/34 established realistic intraday return dispersion (~34-36bps effect scale); at n=300 this gives power to detect a mean edge >=15bps at t>=2, which is the minimum edge that could survive T1 fee costs \u2014 smaller effects are not actionable regardless of significance, avoiding an exp14-style unfalsifiable criterion.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_window_min": 5,
+   "imbalance_threshold": 0.6,
+   "direction": "follow"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

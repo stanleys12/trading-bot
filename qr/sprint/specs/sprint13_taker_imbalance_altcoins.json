@@ -1,0 +1,24 @@
+{
+ "name": "sprint13_taker_imbalance_altcoins",
+ "hypothesis": "Taker-buy imbalance predicts 15m drift in lower-liquidity top-20 USDT alts (ADA, AVAX, BNB, DOGE, LINK, LTC, SOL, XRP), where informed flow is less quickly arbitraged than BTC/ETH (sprint05's clean fail on the two most liquid, most efficient pairs).",
+ "power_argument": "Same param family and cost model as sprint05 (dispersion ~33bp std, T2 round-trip floor ~26bp; min detectable edge at n=300,t=2 ~3.8bp, well below the cost floor). 8 symbols x ~92 validation days x cap 10/day = up to 7360 possible entries; sprint05 realized 920/symbol under identical thresholds on 2 symbols, so >=300 is near-certain.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "smooth": 5,
+  "z_window": 120,
+  "threshold": 1.5
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

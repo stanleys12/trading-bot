@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_etf",
+  "hypothesis": "Rolling 5-min taker buy/sell volume imbalance on highly liquid index ETFs predicts short-horizon (15min) continuation, net of costs \u2014 testing the new order-flow signal outside the illiquid altbasket regime that killed sprint32/34.",
+  "power_argument": "Universe of 4 liquid ETFs, entry_per_day_cap=10/symbol (40/day), ~10 trading days -> ~400 raw entries, >=300 after in-band holds/filters. Assumed 15min net-return stdev ~25bps (liquid ETF, lower than altbasket names). At n=300-400 and alpha=0.01 (t~2.6), min detectable edge = t*sigma/sqrt(n) ~= 3.2-3.7bps, which is above realistic T1 round-trip cost (~1-2bps) -- a clean pass/fail test, not an exp14-style unfalsifiable design.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "DIA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_threshold": 0.6,
+   "lookback_minutes": 5
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 10
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "name": "sprint17_meanrev_10m_altbasket",
+ "hypothesis": "sprint02's 10-min down-move mean-reversion signal (majors FAIL, t=-30.2) may retain a net edge on the thinner 8-alt basket where price impact persists longer, closing the last untested cell in the 5-signal x {majors,alts} matrix.",
+ "power_argument": "T2 cost floor ~26bp, dispersion ~33bp std -> min detectable edge at n=300,t=2 ~3.8bp. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; sprint04 realized 5888/5888 under identical caps on this basket, so n>=300 is near-certain.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "meanrev",
+ "params": {
+  "ret_window": 10,
+  "z_window": 120,
+  "threshold": 2.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

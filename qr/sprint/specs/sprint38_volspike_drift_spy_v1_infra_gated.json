@@ -1,0 +1,17 @@
+{
+ "name": "sprint38_volspike_drift_spy_v1_infra_gated",
+ "hypothesis": "Volume-spike drift (>=3x trailing 30-min median volume, up-close bar) predicts 30m continuation; closed well-powered on BTC/ETH majors (sprint03, t=-38), 8-alt basket (sprint04), and tail-liquidity altcoins (sprint26) -- all FAIL. SPY is the last untested cell in the 5-signal x 4-universe matrix. Same signal, unrelated participant base (RTH equity vs. 24/7 crypto perp) -- genuinely open cell, not a parameter permutation of a closed family.",
+ "power_argument": "Using SPY 15m stdev ~15bp (sprint27/33/35 calibration) scaled to 30m hold (~15bp*sqrt(2)~=21bp) as the dispersion proxy: SE at n=300 ~1.2bp, min detectable edge at t=2 ~2.4bp, well below the ~26bp T2 cost floor. 1 symbol x ~63 validation days x cap10/day = up to 630 entries if volume spikes fire even a few times/day, clearing the 300 floor -- IF the loader exists.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "window": 30,
+  "k": 3.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "HELD -- requires data.py Alpaca IEX 1m RTH equity loader (missing; would be the 11th consecutive SPY spec blocked by this gap across sprint11/14/15/24/25/27/33/35/36/37). Do not submit to proposals/ until the loader lands AND registrar.py enforces the prerequisite/HELD field -- it currently does not (flagged sprint27, sprint33; still unfixed, since 35/36/37 ran anyway and burned 3 more sprint days on guaranteed n=0)."
+}

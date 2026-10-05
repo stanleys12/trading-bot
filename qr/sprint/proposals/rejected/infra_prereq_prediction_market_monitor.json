@@ -1,0 +1,18 @@
+{
+ "spec": {
+  "name": "infra_prereq_prediction_market_monitor",
+  "hypothesis": "not a trial - build monitoring-only Kalshi/Polymarket spread scanner (measure real spread freq/size net fees) before any spec can be pre-registered",
+  "power_argument": "N/A - measurement infra, no trades",
+  "symbols": [],
+  "signal": "none - new family outside factory.py",
+  "params": {},
+  "hold_minutes": 0,
+  "fee_tier": "T0",
+  "entry_per_day_cap": 0
+ },
+ "errors": [
+  "unknown signal none - new family outside factory.py",
+  "T0 is mechanism-check only, cannot be the registered tier",
+  "power_argument too thin (charter: expected trade count and minimum detectable edge, stated before scoring)"
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_qhour_liquid_core",
+  "hypothesis": "Taker order-flow imbalance measured at quarter-hour opens predicts short-horizon directional continuation in liquid, low-cost names, independent of the pure time-of-day drift already falsified in sprint33/34 and independent of the tail-liquidity cost drag that killed sprint32/34.",
+  "power_argument": "Implied per-trade std ~79.6bps derived from sprint34 (mean=-36.427bps, n=1616, t=-18.392, std=mean*sqrt(n)/t). At n>=300, alpha=0.05 two-sided (t_crit~1.97), MDE = 1.97*79.6/sqrt(300) ~= 9.1bps net -- a realistic, falsifiable edge threshold, not a criterion immune to failure.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "TSLA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_lookback_min": 5,
+   "imbalance_threshold_pctile": 75,
+   "direction": "trade_with_imbalance",
+   "timing_anchor": "qhour_open"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 4
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

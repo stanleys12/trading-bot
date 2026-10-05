@@ -1,0 +1,41 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_meanrev",
+  "hypothesis": "Extreme short-horizon taker (aggressor) volume imbalance in top-liquidity names predicts 10-minute mean-reversion, net of realistic T1 costs -- tests the signal cleanly, away from the tail-liquidity altbasket cost trap that sank sprint32/34.",
+  "power_argument": "~20 liquid names x ~1 qualifying |z|>=2 imbalance event/day, cap 2 entries/day/name, over a 20-day sealed window -> ~400 trades (>=300 target). Liquid-name net-return SD ~40bps (vs ~180bps in altbasket) gives MDE ~4.6bps at n=300/t=2; pass threshold set at mean_net>8bps (2x MDE) so the criterion can fail under the null (exp14 lesson).",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "GOOGL",
+   "AMZN",
+   "META",
+   "AVGO",
+   "TSLA",
+   "LLY",
+   "JPM",
+   "V",
+   "UNH",
+   "XOM",
+   "MA",
+   "HD",
+   "PG",
+   "COST"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 5,
+   "imbalance_z_threshold": 2.0,
+   "direction": "fade"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 2
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

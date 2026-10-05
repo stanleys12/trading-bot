@@ -1,0 +1,23 @@
+{
+ "name": "sprint34_qhour_open_tail_liquidity_altbasket",
+ "hypothesis": "qhour_open (quarter-hour VWAP-slicing boundary flow, arXiv 2607.09426) FAILED on majors (sprint09) and liquid-8-alts (sprint16). Momentum/order-flow literature (Liu-Tsyvinski et al., cited sprint18/26) predicts effects concentrate in smaller, less-liquid, higher-turnover names. This basket (same tail-liquidity alts as sprint26/31/32) closes the last untested cell in the 5-signal x 3-universe matrix.",
+ "power_argument": "C0/C1 calibration: dispersion ~33bp std, T2 cost floor ~26bp -> min detectable edge at n=300,t=2 is ~3.8bp, well below cost floor. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; sprint26 (same basket, different signal) realized 4413 validation trades under identical caps, so n>=300 is near-certain even with BTCSTUSDT/MATICUSDT gaps.",
+ "symbols": [
+  "BTCSTUSDT",
+  "MATICUSDT",
+  "GALAUSDT",
+  "SANDUSDT",
+  "MANAUSDT",
+  "CHZUSDT",
+  "ONEUSDT",
+  "ZILUSDT"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint32_predmkt_spread_monitor",
+  "hypothesis": "Kalshi and Polymarket price the same binary event with a cross-venue spread >fees often enough to trade; settlement-definition risk (not price risk) is the main killer, so measure matched-resolution-text spreads before trading.",
+  "power_argument": "Monitoring phase, not yet a trade spec: need >=300 matched-event-pairs to estimate spread frequency/size before any t-stat trade claim; BLOCKED pending data.py Kalshi+Polymarket loader and a matched-resolution-text signal function (not yet in SIGNALS).",
+  "symbols": [
+   "KALSHI_POLY_PAIRS_TBD"
+  ],
+  "signal": "predmkt_spread_MISSING_BUILD_FIRST",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "T2",
+  "entry_per_day_cap": null,
+  "prerequisite": "new data.py loader (public APIs, no auth) + new factory.py signal fn; monitor-first per BACKLOG Priority 2 before any trade spec"
+ },
+ "errors": [
+  "unknown signal predmkt_spread_MISSING_BUILD_FIRST"
+ ]
+}

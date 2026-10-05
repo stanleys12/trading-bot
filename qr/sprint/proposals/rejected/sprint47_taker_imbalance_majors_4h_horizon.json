@@ -1,0 +1,26 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_majors_4h_horizon",
+  "hypothesis": "Taker-buy imbalance (30m smoothed, 1440m z-score > 2) predicts positive drift over a 240-minute horizon in the five most liquid USDT pairs. Order-flow predictability in crypto is documented at multi-hour to multi-day lags (EFMA 2025), not at the 15-60m holds already tested. New mechanism: horizon extension to match the literature; not a rerun of sprint10/12/20/22.",
+  "power_argument": "Majors 240m return sigma ~100bp, so min detectable edge at n=300, t=2 is ~11.5bp, below the ~26bp T2 round-trip cost floor; PASS requires >~26bp gross, which can fail under the null. 5 symbols x ~92 validation days x cap 3/day allows up to 1380 entries; expected n>=300 given z>2 trigger frequency. If validation n<300, mark UNPOWERED and do not score. Prerequisite: validator confirms no prior registered spec with signal=taker_imbalance and hold_minutes>=240.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "SOLUSDT",
+   "BNBUSDT",
+   "XRPUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.0
+  },
+  "hold_minutes": 240,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

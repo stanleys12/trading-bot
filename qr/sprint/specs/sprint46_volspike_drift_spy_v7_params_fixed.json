@@ -1,0 +1,17 @@
+{
+ "name": "sprint46_volspike_drift_spy_v7_params_fixed",
+ "hypothesis": "After a 3x volume spike on a positive SPY 1m RTH bar, the following 30m drift is non-zero. This is the unscored mechanism left after loader defects in sprints 38-45.",
+ "power_argument": "About 63 validation RTH days x cap 10 gives up to 630 trades (floor 300). SPY 30m sigma is ~20bp, so SE is ~1.15bp at n=300 and the minimum detectable edge at t=2 is ~2.3bp. T2 round-trip cost is ~26bp, so PASS needs gross above ~28bp, which can fail under the null. If n<300 on validation, mark UNPOWERED and do not score.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "window": 60,
+  "k": 3.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "auditor dry-run n>0 on research and validation; C0/C1 pass on the current loader. If n=0, escalate and do not score."
+}

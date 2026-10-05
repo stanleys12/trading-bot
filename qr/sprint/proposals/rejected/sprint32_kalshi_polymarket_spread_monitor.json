@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint32_kalshi_polymarket_spread_monitor",
+  "hypothesis": "Cross-venue price discrepancies on identically-worded Kalshi/Polymarket contracts persist net of fees often enough and large enough to be tradeable; measure before trading.",
+  "power_argument": "MONITORING PHASE, not a scored trial: no trade signal, no t-test yet. Need >=300 matched-contract observations to estimate spread frequency/size distribution before any validation spec can state a min-detectable-edge. Deferred until real fee schedules are pulled.",
+  "symbols": [
+   "KALSHI:*",
+   "POLYMARKET:*"
+  ],
+  "signal": "cross_venue_spread_NOT_IN_FACTORY_SIGNALS",
+  "params": {
+   "note": "requires new data.py connector; will fail validate_spec as-is; submitting for principal/backtest_auditor build authorization, not automated registration"
+  },
+  "hold_minutes": null,
+  "fee_tier": "TBD_pending_real_fee_pull",
+  "entry_per_day_cap": null
+ },
+ "errors": [
+  "unknown signal cross_venue_spread_NOT_IN_FACTORY_SIGNALS",
+  "fee_tier must be T0..T3"
+ ]
+}

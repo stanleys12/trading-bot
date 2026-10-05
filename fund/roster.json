@@ -1,0 +1,230 @@
+{
+ "_comment": "20-seat AI fund. Seats reference a playbook (the skill they train on). Models: haiku=scans/evals, sonnet=judgment seats. Trust tiers: 0=advise only, 1=may raise auto-alerts, 2=may queue PAPER trades to the discretionary sleeve (requires sleeve enabled + pre-registered eval promotion, see evals/criteria.json).",
+ "seats": {
+  "chief_of_desk": {
+   "playbook": "chief.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "risk_officer": {
+   "playbook": "risk.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "execution_verifier": {
+   "playbook": "execution.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "measurement_auditor": {
+   "playbook": "measurement.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "ops_engineer": {
+   "playbook": "ops.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "equity_pm": {
+   "playbook": "book_pm.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk",
+   "param": "low-vol equity book"
+  },
+  "crypto_pm": {
+   "playbook": "book_pm.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk",
+   "param": "crypto TSMOM book"
+  },
+  "options_pm": {
+   "playbook": "book_pm.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "desk",
+   "param": "covered-call book"
+  },
+  "scout_equity": {
+   "playbook": "scout.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "desk",
+   "param": "US equities in the book"
+  },
+  "scout_crypto": {
+   "playbook": "scout.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "desk",
+   "param": "BTC/ETH and crypto microstructure"
+  },
+  "scout_macro": {
+   "playbook": "scout.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "desk",
+   "param": "macro calendar, rates, index-level moves"
+  },
+  "news_analyst": {
+   "playbook": "news.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "desk"
+  },
+  "research_lead": {
+   "playbook": "research.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "research",
+   "param": "sprint lead: read the Sprint section + latest artifacts; propose the single best NEXT experiment as a complete spec json (fields per qr/sprint/CHARTER.md: name sprint<NN>_<slug>, hypothesis, power_argument with expected validation trade count >=300 and min detectable edge, symbols, signal from the factory library, params, hold_minutes, fee_tier T1-T3, entry_per_day_cap). Put the spec INSIDE your memo in a ```json fence. Respect closed doors in the registry."
+  },
+  "quant_a": {
+   "playbook": "research.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "research",
+   "param": "analyst: work the top backlog item end to end"
+  },
+  "quant_b": {
+   "playbook": "research.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "research",
+   "param": "analyst: data integrity and new free data doors"
+  },
+  "red_team": {
+   "playbook": "research.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "research",
+   "param": "sprint red team under the charter's ACCURACY RULES: review the newest completed artifact. An objection is valid ONLY with (a) a defect class from the charter taxonomy, (b) specific evidence from the artifact, (c) the predicted result if fixed. If you find no confirmed-class defect, say APPROVED \u2014 approving a clean experiment scores FOR you, random killing scores AGAINST you in your ledger."
+  },
+  "backtest_auditor": {
+   "playbook": "research.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "research",
+   "param": "sprint auditor: check the newest artifact for pipeline integrity \u2014 split boundaries respected, next-bar-open entries (no lookahead), fee tier applied both sides, slippage nonzero, per-symbol trade counts sane, controls C0/C1 current. Cite numbers from the artifact only."
+  },
+  "evals_steward": {
+   "playbook": "governance.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "governance",
+   "param": "steward: run/score seat evals, maintain trust tiers"
+  },
+  "coach": {
+   "playbook": "governance.md",
+   "model": "sonnet",
+   "tier": 0,
+   "wing": "governance",
+   "param": "coach: weekly review of journal+scores, propose playbook diffs to coach_inbox/ (never edit directly)"
+  },
+  "scribe": {
+   "playbook": "governance.md",
+   "model": "haiku",
+   "tier": 0,
+   "wing": "governance",
+   "param": "scribe: write the daily fund report for the human principal, plain language"
+  }
+ },
+ "schedule": {
+  "market_full_hours_pt": [
+   7,
+   10,
+   12
+  ],
+  "market_light_crew": [
+   "risk_officer",
+   "execution_verifier",
+   "scout_equity"
+  ],
+  "market_full_crew": [
+   "chief_of_desk",
+   "risk_officer",
+   "execution_verifier",
+   "measurement_auditor",
+   "ops_engineer",
+   "equity_pm",
+   "crypto_pm",
+   "options_pm",
+   "scout_equity",
+   "scout_crypto",
+   "scout_macro",
+   "news_analyst"
+  ],
+  "offhours_interval_hours": 8,
+  "offhours_crew": [
+   "ops_engineer",
+   "crypto_pm"
+  ],
+  "research_hour_pt": 14,
+  "research_crew_rotation": [
+   [
+    "research_lead",
+    "red_team"
+   ],
+   [
+    "research_lead",
+    "backtest_auditor"
+   ],
+   [
+    "research_lead",
+    "red_team",
+    "quant_b"
+   ]
+  ],
+  "evals_hour_pt": 13,
+  "scribe_hour_pt": 13,
+  "coach_day": "Sunday",
+  "stagger_market": {
+   "5": [
+    "risk_officer"
+   ],
+   "10": [
+    "scout_equity"
+   ],
+   "15": [
+    "execution_verifier"
+   ],
+   "20": [
+    "news_analyst"
+   ],
+   "25": [
+    "scout_crypto"
+   ],
+   "30": [
+    "measurement_auditor"
+   ],
+   "35": [
+    "PM_ROTATE"
+   ],
+   "40": [
+    "scout_macro"
+   ],
+   "45": [
+    "ops_engineer"
+   ],
+   "55": [
+    "chief_of_desk"
+   ]
+  },
+  "_stagger_note": "Market hours run as a STAGGERED floor: one seat takes the desk every ~5 minutes (PM_ROTATE = equity/crypto/options PM by hour). The chief synthesizes the trailing hour at :55. Replaces the old convene-all-at-once cycles so coverage is continuous and the wall shows organic activity.",
+  "_offhours_note": "2026-08-26 (principal's direction): heavy DURING market hours only. Post-close block ~13:00-15:00 PT holds scribe + evals + research; overnight = a single skeleton check ~every 8h; weekends = skeleton only.",
+  "market_mode": "event",
+  "wave_minutes": 20,
+  "_mode_note": "2026-08-27: EVENT-DRIVEN \u2014 fund/dispatcher.py watches broker/prices/logs every ~20s (free) and wakes the relevant seat only when something happens. Fallbacks: 'full_waves' (all 20 every wave_minutes) or 'staggered'."
+ },
+ "discretionary_sleeve": {
+  "enabled": false,
+  "_comment": "The pressure valve for constant trading. PAPER only, $10k cap, only tier-2 seats may queue orders, and tier 2 is reachable only through the pre-registered promotion gate in evals/criteria.json. Off until at least one seat earns it."
+ }
+}

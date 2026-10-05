@@ -1,0 +1,20 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_qhour_liquid50",
+  "hypothesis": "At the open quarter-hour, order-flow taker buy/sell imbalance in the first N minutes predicts short-horizon continuation in liquid large-caps, net of realistic costs \u2014 distinct from the price-breakout signal already killed twice on illiquid names.",
+  "power_argument": "50-symbol liquid basket, entry_per_day_cap=1/symbol -> up to 50 entries/day; 10-12 trading days reaches n>=300-500. Assuming per-trade net-return stdev ~40bps (typical for 30-60min equity holds), n=300 gives ~80% power to detect a minimum net edge of ~9bps at alpha=0.05 (two-sided t-test). This edge threshold is set above realistic round-trip cost (T1 tier) so a pass is economically meaningful, not just statistically nonzero.",
+  "symbols": "top-50 by 20d ADV from S&P100, excluding all tail-liquidity altbasket names used in sprint32/34",
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_window_min": 15,
+   "entry_threshold_pctile": 80,
+   "direction": "sign of imbalance"
+  },
+  "hold_minutes": 45,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 1
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

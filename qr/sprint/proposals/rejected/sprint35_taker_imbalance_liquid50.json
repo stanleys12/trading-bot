@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid50",
+  "hypothesis": "Signed taker-volume imbalance over a trailing 15-minute window predicts the next-30-minute forward return in liquid, tight-spread equity names, net of realistic costs.",
+  "power_argument": "Basket of top-50 ADV names from the existing 276-name low-vol equity universe (excludes tail-liquidity names implicated in sprint32/34 failures). With entry_per_day_cap=1 per symbol across a ~10-session test window, expect ~400-500 qualifying trades (>=300 threshold met). Given T1 round-trip cost ~5-8bps on liquid names, min detectable/actionable edge set at >=15bps net to be worth pursuing further -- comfortably resolvable at n~450 for a t-stat >=3.",
+  "symbols": "top-50-ADV subset of current low-vol equity book (exclude tail-liquidity altbasket)",
+  "signal": "taker_imbalance",
+  "params": {
+   "window_min": 15,
+   "imbalance_threshold": 0.6
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 1
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

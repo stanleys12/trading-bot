@@ -1,0 +1,19 @@
+{
+ "name": "sprint05_taker_imbalance_15m",
+ "family": "sprint-intraday",
+ "hypothesis": "Extreme taker-buy share of volume (order-flow imbalance) on BTCUSDT/ETHUSDT predicts continued drift over the next 15 minutes (EFMA 2025: taker imbalance predicts crypto returns in-sample, persisting to multi-day lags); distinct mechanism from sprint02 meanrev and sprint03/04 volspike_drift, both of which failed.",
+ "power_argument": "Using C0's measured net_bps dispersion (~33bp std) as the volatility proxy: at n=300 the minimum detectable edge at t=2 is ~2*33/sqrt(300)=3.8bp, far below the ~26bp T2 round-trip cost floor measured in C0/C1, so the design is powered to detect any deployable-sized edge. Expected validation trades: 2 symbols x ~92 days x cap 10/day = up to 1840 possible entries; z>1.5 imbalance events on smoothed taker-buy share occur multiple times/day on liquid pairs, comfortably clearing the 300 floor (sprint02-04 realized 1730-5888 trades under similar caps).",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "smooth": 5,
+  "z_window": 120,
+  "threshold": 1.5
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

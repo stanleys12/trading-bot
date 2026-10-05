@@ -1,0 +1,16 @@
+{
+ "name": "sprint14_qhour_open_spy_v2",
+ "hypothesis": "Quarter-hour boundary algo flow (arXiv 2607.09426, an equity VWAP-slicing mechanism) predicts 15m drift on SPY -- untested to date because sprint11 hit a data.py loader defect (SPY not Binance-resolvable), not a null result.",
+ "power_argument": "SPY 15m return stdev ~15bp assumed; SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp, well below T2 cost floor (~20-26bp measured on crypto C0/C1). Boundary bars=26/day RTH; cap 8/day x ~63 validation days x1 symbol = up to 504 possible entries, clears the 300 floor. BLOCKED: requires an equity 1m loader added to qr/sprint/data.py before this can run for real.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

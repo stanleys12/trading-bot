@@ -1,0 +1,27 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_continuation_majors_4h_hold",
+  "family": "sprint-intraday",
+  "hypothesis": "Extreme taker-buy imbalance (z>2.5 vs a 1-day baseline, smoothed over 60m) forecasts positive drift that is too small to beat T2 costs over 5-15m but accumulates over a 4h hold, per the multi-lag order-flow evidence (EFMA 2025). Never tested at hold >= 60m; sprints 5-23 all used holds of 5-15m.",
+  "power_argument": "Symbols: 5 majors, with spot 1m data for ~92 validation days. Hold 240m, entry_per_day_cap 4, non-overlapping per symbol. At z>2.5 with 60m smoothing I expect ~1 trade/day/symbol, so ~450 validation trades (floor 300). This is an estimate, not a measured count; the auditor dry-run must confirm n>=300 on validation or the spec is marked UNPOWERED and not scored. 4h return sigma is ~90bp, so SE is ~4.3bp at n=450 and the minimum detectable net edge at t=2 is ~8.5bp. T2 cost is ~20bp fees plus >=2bp slippage, so PASS needs gross of ~31bp or more. That is well above a null result, so the criterion can fail. Research and validation must agree in sign.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "SOLUSDT",
+   "BNBUSDT",
+   "XRPUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 60,
+   "z_window": 1440,
+   "threshold": 2.5
+  },
+  "hold_minutes": 240,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 4
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

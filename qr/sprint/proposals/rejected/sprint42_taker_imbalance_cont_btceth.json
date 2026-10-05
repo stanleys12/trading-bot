@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_cont_btceth",
+  "hypothesis": "Extreme 1m-aggregated taker buy/sell imbalance (z-score vs trailing 24h) predicts same-direction drift over the next 30 minutes in BTC/ETH, exceeding round-trip T1 costs.",
+  "power_argument": "Cap 6 entries/day/symbol across 2 symbols gives >=300 validation trades. Assumed per-trade sd is ~40bps, so SE is ~2.3bps at n=300 and min detectable net edge is ~7bps at t>=3. FAIL if mean_net<=0 or t<3. Precondition: dry-run must show entries>0 on the training window, otherwise report LOADER_FAILURE, not FAIL.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 15,
+   "zscore_window_min": 1440,
+   "entry_z": 2.0,
+   "direction": "with_imbalance"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint36_cross_venue_spread_kalshi_polymarket",
+  "hypothesis": "Kalshi and Polymarket misprice economically-identical binary contracts (matched by resolution-criteria text, not title) by 1.5-4.5% net of fees, per IMDEA's $40M/yr estimate; monitoring-only, no trade until measured.",
+  "power_argument": "Requires >=300 matched-contract snapshot-pairs across >=30 days to estimate spread frequency/size distribution at t=2; min detectable net edge = 150bps after venue fees, above documented noise floor.",
+  "symbols": [
+   "KALSHI_POLYMARKET_MATCHED_PAIRS"
+  ],
+  "signal": "cross_venue_spread",
+  "params": {
+   "match_method": "resolution_text_embedding",
+   "min_spread_bps": 150
+  },
+  "hold_minutes": 0,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 0,
+  "status": "BUILD_REQUIRED_not_registrable"
+ },
+ "errors": [
+  "unknown signal cross_venue_spread"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "spec": {
+  "name": "sprint28_taker_imbalance_liquid_momentum",
+  "hypothesis": "A trailing 5-min taker buy/sell volume imbalance (z-score) in top-20 liquid large-caps + SPY/QQQ predicts short-horizon (15min) continuation, net of costs.",
+  "power_argument": "Basket of 20 liquid names, threshold-triggered entries (|z|>=2), expect >=300 trades over the sealed intraday test window at T1 costs; sized to detect a minimum edge of 15bps net (>2x round-trip cost) at t>2.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "TSLA",
+   "AMD",
+   "AVGO",
+   "JPM",
+   "XOM",
+   "UNH",
+   "V",
+   "HD",
+   "PG",
+   "COST",
+   "LLY",
+   "MRK"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 5,
+   "z_threshold": 2.0,
+   "direction": "trend_follow"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "name": "sprint10_taker_imbalance_btc",
+ "hypothesis": "Trailing 5-minute taker buy/sell volume imbalance predicts BTCUSD/ETHUSD returns over the next 15 minutes in the direction of the imbalance (informed flow persistence).",
+ "power_argument": "Assuming ~35bps stdev for 15-min crypto returns (typical intraday realized vol, an assumption not a briefing fact), SE at n=300 is ~2.0bps; a t>=2.5 pre-registration bar implies a ~5bps gross detection floor. Round-trip cost at fee_tier T2 (~10bps) sets the success bar at net>15bps, well above the noise floor -- so the design can fail on a true null rather than by construction (exp14 lesson).",
+ "symbols": [
+  "BTCUSD",
+  "ETHUSD"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "lookback_minutes": 5,
+  "imbalance_threshold": "top-tercile rolling z-score",
+  "direction": "sign of imbalance"
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

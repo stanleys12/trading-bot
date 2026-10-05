@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_btc_eth",
+  "hypothesis": "Short-horizon taker buy/sell volume imbalance predicts 15-min forward returns in BTCUSD/ETHUSD; liquid majors avoid the tail-liquidity execution costs that killed sprint32/34.",
+  "power_argument": "entry_per_day_cap=6 x 2 symbols x ~30-day window >= 360 trades (>=300 target). Assuming ~15bps 15-min return stdev for majors (unconfirmed, needs historical check before run), MDE at n=360, alpha=0.05 ~= 1.9bps -- must exceed T1 round-trip cost to be actionable.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "imbalance_pctile_threshold": 80
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

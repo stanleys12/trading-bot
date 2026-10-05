@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint33_taker_imbalance_meanrev_liquid_crypto",
+  "hypothesis": "Extreme short-window taker buy/sell volume imbalance in liquid crypto (BTC, ETH) predicts short-horizon mean reversion; prior mean-rev failure (sprint31) was confounded by tail-liquidity execution cost, not signal invalidity.",
+  "power_argument": "Target n>=300 trades: cap 8 entries/symbol/day x 2 symbols x ~20 remaining sprint days = up to 320 trades. Min detectable edge set at 15bps net (must clear assumed T1 round-trip cost ~5-8bps on liquid BTCUSD/ETHUSD with margin) at t-test power 0.8, alpha 0.05.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_minutes": 5,
+   "imbalance_threshold": 0.6,
+   "direction": "fade"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

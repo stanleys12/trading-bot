@@ -1,0 +1,24 @@
+{
+ "name": "sprint26_volspike_drift_tail_liquidity_altbasket",
+ "family": "sprint-intraday",
+ "hypothesis": "sprint03/04's volspike_drift (informed order-flow signature) FAILED on majors and the large-cap 8-alt basket, both survivorship-selected (100% still trading). Momentum/order-flow literature (Liu-Tsyvinski et al., cited sprint18) predicts effects concentrate in smaller, less-liquid, higher-turnover names -- never tested here. This basket swaps in genuinely smaller-cap and since-delisted/renamed names (BTCSTUSDT, MATICUSDT pre-migration -- both confirmed present in binance.vision per sprint07's audit) alongside smaller live alts, closing the survivorship gap in the existing 5-signal matrix.",
+ "power_argument": "C0/C1 dispersion ~33bp std, T2 cost floor ~26bp -> min detectable edge at n=300,t=2 is ~3.8bp, well below cost floor. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; even at half the trigger rate realized on the liquid-8 basket (5803-7269 trades under identical caps, sprint04/16-18), conservatively expect >=2500 trades, clearing the 300 floor with wide margin.",
+ "symbols": [
+  "BTCSTUSDT",
+  "MATICUSDT",
+  "GALAUSDT",
+  "SANDUSDT",
+  "MANAUSDT",
+  "CHZUSDT",
+  "ONEUSDT",
+  "ZILUSDT"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "window": 30,
+  "k": 3.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

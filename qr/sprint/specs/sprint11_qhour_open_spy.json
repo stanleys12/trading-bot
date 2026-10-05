@@ -1,0 +1,16 @@
+{
+ "name": "sprint11_qhour_open_spy",
+ "hypothesis": "Quarter-hour boundary flow clustering (arXiv 2607.09426, an equity VWAP-slicing mechanism) predicts continued 15m drift on SPY 1-min RTH bars -- distinct venue/mechanism from sprint09's crypto FAIL (24/7 fragmented flow, no scheduled algo slicing).",
+ "power_argument": "Assuming SPY 15-min return stdev ~15bp (typical intraday realized vol, an assumption not a briefing fact): SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp, well below the T2 cost floor (2x10bp fee + slippage, ~20-26bp measured on crypto, comparable order of magnitude here since the flat fee dominates) -- so the design fails on a true null, not by construction. Boundary bars = 26/day (6.5h RTH); cap 8/day x ~63 validation trading days x 1 symbol = up to 504 possible entries, clearing the 300 floor.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

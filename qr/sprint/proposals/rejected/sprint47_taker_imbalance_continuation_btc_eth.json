@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_continuation_btc_eth",
+  "hypothesis": "Extreme 30m taker-buy/sell imbalance (rolling 1st/99th percentile) predicts same-direction BTC/ETH drift over the next 60m that exceeds round-trip costs.",
+  "power_argument": "Expected validation trades ~400 (>=300). Per-trade sd ~50bps, SE ~2.5bps, min detectable net edge ~6-7bps at t~2.5. Percentile thresholds guarantee trigger frequency, avoiding the n=0 failure of sprint44-46. Null-fail criterion: mean net <=0 or t<2.5.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_min": 30,
+   "upper_pct": 99,
+   "lower_pct": 1,
+   "lookback_days": 30,
+   "direction": "continuation"
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 1
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

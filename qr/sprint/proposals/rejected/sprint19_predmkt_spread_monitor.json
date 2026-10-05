@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint19_predmkt_spread_monitor",
+  "hypothesis": "Kalshi vs Polymarket cross-venue price spreads on matched-resolution-text markets exceed round-trip cost net of fees often enough to be tradeable (IMDEA: ~$40M/yr extracted industry-wide; 1.5-4.5% spreads reported) -- DISTINCT mechanism from all 5 closed price-prediction families: this is realized-spread arbitrage, not directional forecasting.",
+  "power_argument": "T0 MEASUREMENT ONLY, no verdict claimed. Needs >=300 matched-market-pairs sampled over >=4 weeks to characterize spread frequency/size distribution before any trade spec is written; this is the mechanism check that must precede a powered trading spec, per exp14 lesson (do not pre-commit a trade-count target for a signal that doesn't exist in the factory yet).",
+  "symbols": [
+   "KALSHI:*",
+   "POLYMARKET:*"
+  ],
+  "signal": "NONE -- requires new data door: Kalshi + Polymarket public API ingestion, resolution-text matcher. Not in factory.SIGNALS; do not register as a trading spec.",
+  "params": {
+   "match_method": "resolution_text_similarity",
+   "min_liquidity_usd": 500
+  },
+  "hold_minutes": 0,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 0
+ },
+ "errors": [
+  "unknown signal NONE -- requires new data door: Kalshi + Polymarket public API ingestion, resolution-text matcher. Not in factory.SIGNALS; do not register as a trading spec."
+ ]
+}

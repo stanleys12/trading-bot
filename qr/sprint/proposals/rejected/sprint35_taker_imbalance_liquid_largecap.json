@@ -1,0 +1,36 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_largecap",
+  "hypothesis": "Short-horizon taker buy/sell volume imbalance in top-of-book order flow predicts next-N-minute mid-price drift in liquid large-caps, net of realistic intraday costs.",
+  "power_argument": "Target n>=300 validation trades over the sealed test window at entry_per_day_cap=3 across a ~15-name liquid basket (~7 trading days). Prior sprints (32/34) show realized intraday cost drag of 30-36bps on similar hold windows in illiquid names; liquid large-cap spreads/impact should be materially lower (est. <5bps round-trip). Set min detectable edge at 8bps net (two-sided t-test, alpha=0.05, power=0.8) \u2014 well above the ~5bps cost floor, so a pass is falsifiable and a null result is informative rather than a foregone conclusion.",
+  "symbols": [
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "JPM",
+   "XOM",
+   "SPY",
+   "QQQ",
+   "V",
+   "UNH",
+   "HD",
+   "PG",
+   "AVGO"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "imbalance_threshold_pctile": 90,
+   "direction": "trend_follow"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

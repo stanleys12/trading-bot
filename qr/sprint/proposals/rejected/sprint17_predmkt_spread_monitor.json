@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint17_predmkt_spread_monitor",
+  "hypothesis": "Kalshi and Polymarket price the same resolution event differently by enough, after fees, to be a real (if unharvested-until-measured) cross-venue spread -- documented ~$40M/yr extracted industry-wide, 1.5-4.5% spreads reported (IMDEA); settlement-definition mismatch is the primary risk so matching must be on resolution-criteria text, not titles.",
+  "power_argument": "No trades yet -- this is the pre-registered MEASUREMENT phase P2 calls for. Target >=300 matched-market spread observations (analog to trade count) across >=20 days of paired snapshots to characterize spread frequency/size distribution before any validation trade spec is written. Min detectable mean spread at t=2, n=300 using an assumed ~3pp cross-venue dispersion (placeholder, not a briefing fact -- must be replaced with measured std after week 1) is ~0.35pp, well under the reported 1.5-4.5pp range, so the design can fail (spreads too rare/thin/fee-eaten) rather than confirm by construction.",
+  "symbols": [
+   "N/A -- event-market pairs, not tickers; universe = markets live on both venues with matching resolution text"
+  ],
+  "signal": "NEW ENGINE REQUIRED -- not in factory.py SIGNALS; needs Kalshi + Polymarket public-API pull and resolution-text matcher before this can run nightly",
+  "params": {
+   "snapshot_interval_minutes": 15,
+   "min_matched_markets": 20,
+   "fee_model": "venue-published taker fees, both legs"
+  },
+  "hold_minutes": null,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 0
+ },
+ "errors": [
+  "unknown signal NEW ENGINE REQUIRED -- not in factory.py SIGNALS; needs Kalshi + Polymarket public-API pull and resolution-text matcher before this can run nightly"
+ ]
+}

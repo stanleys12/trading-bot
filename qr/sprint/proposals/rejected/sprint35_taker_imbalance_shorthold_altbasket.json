@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_shorthold_altbasket",
+  "hypothesis": "Taker-buy order-flow imbalance predicts a brief absorption/reversion move that decays within a few minutes (Cont/Kukanov/Stoikov OFI literature). Sprint13/16/22/23 measured mean_gross_bps ~0 at hold=15min across majors/alts/tail-liquidity -- consistent with the effect having already round-tripped to flat by minute 15, not an absent mechanism. This spec changes ONLY hold_minutes (15->2) vs sprint13, isolating the decay-horizon question without conflating it with a new threshold search.",
+  "power_argument": "sprint13 (identical symbols/params/cap, hold=15) realized n=7269 in validation; hold=2 shortens the non-overlap spacing (last_exit = i+hold) so expected entry count is >= 7269, clearing the 300-trade floor by >20x. Using this family's calibrated dispersion (~33bp/trade, from C0/C1), min detectable edge at n=300, t=2 is ~3.8bp -- well under the T2 cost floor (~26bp, per sprint05/13 measurement), so the test can fail under the null exactly as every prior registered spec in this family could and did.",
+  "symbols": [
+   "ADAUSDT",
+   "AVAXUSDT",
+   "BNBUSDT",
+   "DOGEUSDT",
+   "LINKUSDT",
+   "LTCUSDT",
+   "SOLUSDT",
+   "XRPUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 5,
+   "z_window": 120,
+   "threshold": 1.5
+  },
+  "hold_minutes": 2,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 10
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

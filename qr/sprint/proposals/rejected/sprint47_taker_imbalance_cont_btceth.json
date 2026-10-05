@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_cont_btceth",
+  "hypothesis": "Extreme taker buy/sell imbalance over the first 5 minutes of a quarter-hour predicts same-direction drift over the next 60 minutes in BTC and ETH, net of fees.",
+  "power_argument": "Expected validation trades >=300 (2 symbols x cap 6/day x ~25 validation days). Assumed 60m return SD ~35bps (to be re-measured on train before sealing); at n=300, t=3 gives min detectable net edge ~6bps/trade. Unlike sprints 44-46, the trigger frequency is verified on train data to be >0 before the run. If train trigger count implies <300 validation trades, do not run.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_window_min": 5,
+   "z_lookback_days": 14,
+   "z_threshold": 2.0,
+   "direction": "continuation",
+   "gate": "qhour_open"
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

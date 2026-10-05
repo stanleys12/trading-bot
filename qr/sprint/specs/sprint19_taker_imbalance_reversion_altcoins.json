@@ -1,0 +1,15 @@
+{
+ "name": "sprint19_taker_imbalance_reversion_altcoins",
+ "hypothesis": "Extreme short-window taker buy/sell volume imbalance predicts short-horizon reversion in altcoin returns (crowded aggressive taker flow gets absorbed by resting liquidity), net of costs at the tightest fee tier and a short hold.",
+ "power_argument": "Prior three sprints (n~5800 each) imply per-trade return stdev ~60bps (back-solved from t-stats). At n=300, 80% power, two-sided 5%, min detectable edge ~= 2.8*60/sqrt(300) ~= 10bps net. Setting entry_per_day_cap to yield >=300 trades over the standard sprint test window satisfies this.",
+ "symbols": "altcoin_basket_v1 (same universe as sprint16-18, per registry)",
+ "signal": "taker_imbalance",
+ "params": {
+  "imbalance_window_min": 5,
+  "entry_decile_threshold": 0.9,
+  "direction": "fade_extreme"
+ },
+ "hold_minutes": 5,
+ "fee_tier": "T1",
+ "entry_per_day_cap": 5
+}

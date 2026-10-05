@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint45_taker_imbalance_cont_btc_eth",
+  "hypothesis": "Extreme 1m-aggregated taker buy/sell imbalance (top/bottom decile of trailing distribution) predicts same-direction continuation over the next 60 minutes, net of T2 fees.",
+  "power_argument": "Expected validation trades ~600 (2 symbols x cap 3/day x >=100d; window length to be verified by harness). Assumed per-trade sd ~50bps at 60m hold => SE ~2.9bps at n=300; min detectable net edge ~9bps at t>=3. Verdict 'underpowered' (not FAIL) if n<300. Precondition: loader smoke test n>0 on train window.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 15,
+   "entry_quantile": 0.9,
+   "direction": "with_imbalance",
+   "quantile_window_days": 14
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

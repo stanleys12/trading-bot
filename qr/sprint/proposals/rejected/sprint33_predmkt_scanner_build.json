@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint33_predmkt_scanner_build",
+  "family": "cross-venue-arb-monitor",
+  "hypothesis": "Kalshi vs Polymarket contracts sharing identical resolution criteria show exploitable cross-venue spreads (documented ~$40M/yr aggregate, 1.5-4.5%), net of settlement-definition risk.",
+  "power_argument": "Not yet powered -- measurement build, not a scored spec. Must match on resolution-criteria TEXT and monitor >=2wk to measure real spread frequency/size net of both venues' fees before any trade spec (n>=300, min detectable edge, T-tier) is registered.",
+  "symbols": [
+   "KALSHI:*",
+   "POLYMARKET:*"
+  ],
+  "signal": "NEW -- outside factory.py SIGNALS, not price-prediction",
+  "params": {
+   "phase": "monitor-only",
+   "match_on": "resolution_criteria_text"
+  },
+  "hold_minutes": null,
+  "fee_tier": "T0",
+  "entry_per_day_cap": 0,
+  "status": "BLOCKED pending scanner build; registering for the record (BACKLOG PRIORITY 2)"
+ },
+ "errors": [
+  "unknown signal NEW -- outside factory.py SIGNALS, not price-prediction",
+  "T0 is mechanism-check only, cannot be the registered tier"
+ ]
+}

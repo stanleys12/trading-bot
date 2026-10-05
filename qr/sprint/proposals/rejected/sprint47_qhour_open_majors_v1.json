@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint47_qhour_open_majors_v1",
+  "family": "sprint-intraday",
+  "hypothesis": "Quarter-hour boundary algo flow (arXiv 2607.09426) produces continuation on liquid majors when prior-interval drift and taker imbalance agree. Majors only, since the altcoin and tail-liquidity qhour cells are already registered.",
+  "power_argument": "Assumed per-trade sigma ~15bp (not measured). n>=300 validation trades (about 4 symbols x 90 days x 2/day = 720 projected). Min detectable edge at t=2, 80% power: 2.8*15/sqrt(300) ~= 2.4bp net (about 1.6bp at n=720). T1 round trip is about 4bp with slippage. A pass is not a deployable verdict without a maker fill-rate argument. The criteria can fail under the null: the research and validation signs must match, and C0 must stay a FAIL.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "BNBUSDT",
+   "SOLUSDT"
+  ],
+  "signal": "qhour_open",
+  "params": {
+   "lookback": 15,
+   "imb_min": 0.02
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 2
+ },
+ "errors": [
+  "closed-door terms ['taker imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "name": "sprint04_volspike_drift_30m_altbasket",
+ "family": "sprint-intraday",
+ "hypothesis": "The volspike_drift informed-order-flow signature failed net of T2 on BTCUSDT/ETHUSDT (sprint03, t=-38.2) -- the two most heavily arbitraged, market-maker-dense pairs. On lower-tier liquid alts (SOLUSDT/XRPUSDT/ADAUSDT/DOGEUSDT/AVAXUSDT/LINKUSDT/LTCUSDT/BNBUSDT), where depth is thinner and price impact persists longer, the same signal may retain a net edge above the T2 floor. Distinct mechanism: liquidity-tier-dependent adverse selection, not a retread -- disclosed second test of this signal family, symbols/universe is the only changed variable vs sprint03.",
+ "power_argument": "Using sprint03's measured net_bps dispersion (~33bp std, 30-min hold, T2) as the volatility proxy: at n=300 the minimum detectable edge at t=2 is ~2*33/sqrt(300)=3.8bp, far below the ~26bp T2 round-trip+slippage cost floor measured in C0/C1. Sprint03's 2-symbol BTC/ETH run hit its cap ceiling at 1840 entries over ~92 validation days, so even if alt volspike frequency is a fraction of that, 8 symbols x ~92 days x cap 8/day = up to 5888 possible entries clears the 300 floor with wide margin.",
+ "symbols": [
+  "SOLUSDT",
+  "XRPUSDT",
+  "ADAUSDT",
+  "DOGEUSDT",
+  "AVAXUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "BNBUSDT"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "window": 30,
+  "k": 3.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

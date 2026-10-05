@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint26_taker_imbalance_momentum_majors",
+  "hypothesis": "Taker-side order-flow imbalance predicts short-horizon price continuation (not reversion) in BTCUSD/ETHUSD, consistent with sprint23's strongly negative reversion result implying the opposite sign.",
+  "power_argument": "Target >=300 validation trades over remaining sprint window (~24 days to 9/25) across 2 symbols; entry_per_day_cap=8/symbol yields ~300-380 trades at typical fill rates, sufficient to detect a >=5bps net edge at t>2 given sprint23's realized cross-sectional variance.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "direction": "long_on_positive_imbalance_short_on_negative",
+   "threshold_pctile": 80,
+   "sign": "continuation"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

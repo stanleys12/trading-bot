@@ -1,0 +1,20 @@
+{
+ "spec": {
+  "name": "sprint35_predmkt_spread_monitor_buildreq",
+  "hypothesis": "Kalshi/Polymarket cross-venue spreads exceed combined fees often enough to trade; mechanism untestable until measured \u2014 this is a build request, not a runnable backtest.",
+  "power_argument": "Cannot state a trade-count/edge power argument pre-measurement; BACKLOG explicitly requires measuring spread frequency/size net of fees BEFORE any trading spec. Needs >=300 observed spread events in a monitoring window before a trading spec can be powered.",
+  "symbols": [
+   "KALSHI:*",
+   "POLYMARKET:*"
+  ],
+  "signal": "predmkt_cross_venue_spread (NOT YET IN FACTORY \u2014 requires data.py connector + resolution-text matcher)",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "T0",
+  "entry_per_day_cap": null
+ },
+ "errors": [
+  "unknown signal predmkt_cross_venue_spread (NOT YET IN FACTORY \u2014 requires data.py connector + resolution-text matcher)",
+  "T0 is mechanism-check only, cannot be the registered tier"
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint35_kalshi_polymarket_spread_monitor",
+  "hypothesis": "Cross-venue mispricing between Kalshi and Polymarket on matched-resolution-criteria event contracts persists net of fees at deployable size, per documented ~$40M/yr extraction and 1.5-4.5% spreads.",
+  "power_argument": "Measurement phase, not yet a trade-count claim: need >=300 matched-contract-pair observations to size a validation spec; min detectable edge must exceed combined venue fee+gas floor (to be measured, currently uncalibrated \u2014 no T1-T3 tier applies).",
+  "symbols": [
+   "KALSHI:*",
+   "POLYMARKET:*"
+  ],
+  "signal": "NEW_ENGINE_REQUIRED:kalshi_poly_spread (not in factory SIGNALS; needs its own connector, cf. alt_carry.py precedent)",
+  "params": {
+   "match_criteria": "resolution-text exact match, not title match",
+   "min_spread_bps_to_log": 100
+  },
+  "hold_minutes": "until resolution (event-driven, not fixed horizon)",
+  "fee_tier": "NEW-TIER-REQUIRED \u2014 Kalshi+Polymarket fee schedules must be registered before any PASS/FAIL verdict",
+  "entry_per_day_cap": 5
+ },
+ "errors": [
+  "unknown signal NEW_ENGINE_REQUIRED:kalshi_poly_spread (not in factory SIGNALS; needs its own connector, cf. alt_carry.py precedent)",
+  "fee_tier must be T0..T3"
+ ]
+}

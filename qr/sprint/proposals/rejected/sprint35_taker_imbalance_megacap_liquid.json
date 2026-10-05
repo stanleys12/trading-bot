@@ -1,0 +1,30 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_megacap_liquid",
+  "hypothesis": "Trailing 5-min taker buy/sell volume imbalance >65/35 predicts 15-min directional continuation in top-liquidity large-caps, net of realistic costs (T1 spreads).",
+  "power_argument": "10-symbol liquid basket (AAPL,MSFT,NVDA,AMZN,GOOGL,META,AVGO,JPM,V,XOM), entry_per_day_cap=6/symbol => up to 60/day; ~15 trading sessions remain => up to 900 trade opportunities, floor >=300 even at 33% fire rate. Min detectable edge sized to realized T1 costs (~5-10bps half-spread from prior fills) => need >=15bps gross edge to clear 2x-cost bar at t>=2.",
+  "symbols": [
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "AVGO",
+   "JPM",
+   "V",
+   "XOM"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 5,
+   "imbalance_threshold": 0.65
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

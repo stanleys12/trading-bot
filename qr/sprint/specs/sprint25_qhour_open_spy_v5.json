@@ -1,0 +1,17 @@
+{
+ "name": "sprint25_qhour_open_spy_v5",
+ "hypothesis": "Same as sprint15/24 (arXiv 2607.09426 boundary VWAP-slicing on SPY) -- do NOT register/run until data.py gains a free equity 1m RTH loader (Alpaca IEX)",
+ "power_argument": "SPY 15m stdev ~15bp, SE@n=300 ~0.87bp, min detectable edge ~1.7bp << 26bp T2 floor; 26 boundary bars/day RTH x cap8 x ~63 validation days clears 300 floor -- ONLY valid once loader exists",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8,
+ "status": "HOLD_FOR_INFRA"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "C0_null_control", "family": "sprint-control",
+  "hypothesis": "NONE - coin-flip entries through the full pipeline must FAIL; a pass means the harness leaks (fees/slippage/lookahead defect)",
+  "power_argument": "Random entries at ~10/day on 2 symbols over a 92-day validation window yield ~1800 trades; at per-trade vol of tens of bps, t>=2 under the null occurs ~2.3% of the time one-sided. A PASS is therefore strong evidence of harness defect, which is the point of this control.",
+  "symbols": ["BTCUSDT", "ETHUSDT"], "signal": "random",
+  "params": {"rate": 0.00694, "seed": 42},
+  "hold_minutes": 30, "fee_tier": "T2", "entry_per_day_cap": 10
+}

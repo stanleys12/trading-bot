@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint35_scope_amendment_prereg_kalshi_polymarket_monitor",
+  "hypothesis": "NOT a trading spec \u2014 placeholder pre-registration for BACKLOG P2's monitoring phase, pending principal scope approval since Kalshi/Polymarket is outside the charter's frozen crypto-1m/SPY data door",
+  "power_argument": "deferred \u2014 no trade count until spread-capture rate is measured",
+  "symbols": "N/A (prediction-market contracts, not in factory universe)",
+  "signal": "NONE \u2014 no factory.py SIGNALS entry exists for this data source",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "N/A",
+  "entry_per_day_cap": 0,
+  "status": "BLOCKED pending principal scope decision; not a valid registrable spec today"
+ },
+ "errors": [
+  "unknown signal NONE \u2014 no factory.py SIGNALS entry exists for this data source",
+  "fee_tier must be T0..T3",
+  "power_argument too thin (charter: expected trade count and minimum detectable edge, stated before scoring)"
+ ]
+}

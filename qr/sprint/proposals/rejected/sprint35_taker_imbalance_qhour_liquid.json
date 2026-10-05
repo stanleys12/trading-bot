@@ -1,0 +1,47 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_qhour_liquid",
+  "hypothesis": "Opening-hour taker (aggressor) buy/sell volume imbalance predicts short-horizon returns in liquid mega-cap names/ETFs; unlike sprint32/34, tight spreads here mean a genuine order-flow edge should survive T1 costs.",
+  "power_argument": "Basket of 24 liquid symbols x entry_per_day_cap=3 over a 20-session sealed window ~= 1440 candidate signals, thinned by imbalance threshold to an expected >=300 validated trades. Assuming realized-return dispersion comparable to sprint32/34 (~100-150bps std), n=300 detects a mean edge down to ~15-20bps at t~2 -- large enough to clear ~1-2bps T1 costs, small enough to not require chasing noise.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "AVGO",
+   "TSLA",
+   "AMD",
+   "NFLX",
+   "JPM",
+   "V",
+   "MA",
+   "UNH",
+   "XOM",
+   "JNJ",
+   "HD",
+   "COST",
+   "PEP",
+   "KO",
+   "BAC",
+   "CRM"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_window_min": 5,
+   "entry_threshold_abs": 0.6,
+   "direction": "with_imbalance",
+   "session_window": "qhour_open"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

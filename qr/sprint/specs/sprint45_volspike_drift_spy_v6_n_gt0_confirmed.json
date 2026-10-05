@@ -1,0 +1,18 @@
+{
+ "name": "sprint45_volspike_drift_spy_v6_n_gt0_confirmed",
+ "hypothesis": "After a 3x volume spike on SPY 1m RTH bars, the following 30m drift is non-zero (close-auction/news-volume flow; distinct from closed crypto volspike universes). Sprints 38/39/41/43/44 returned n=0 from loader defects, so the mechanism is still unscored.",
+ "power_argument": "Expected validation trades ~63 RTH days x cap 10 = up to 630, above the 300 floor. SPY 30m stdev ~20bp gives SE ~1.15bp at n=300 and min detectable edge ~2.3bp at t=2. PASS needs net-of-T2 t>=2, i.e. gross >~28bp, far above the detectable floor, so the criterion can fail under the null. C0 must give net ~-26bp on this loader (a C0 pass halts the sprint); C1 +25bp planted edge must PASS.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "vol_window": 60,
+  "spike_mult": 3.0,
+  "ret_window": 5
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "backtest_auditor shows a dry-run with n>0 on BOTH research and validation windows, and C0/C1 pass on the current loader, before scoring. If n=0 again, do not score; escalate the loader defect instead."
+}

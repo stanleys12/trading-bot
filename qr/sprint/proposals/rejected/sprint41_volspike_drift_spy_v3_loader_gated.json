@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint41_volspike_drift_spy_v3_loader_gated",
+  "hypothesis": "Volume-spike-conditioned drift on SPY 1m RTH bars. Crypto volspike was closed on 3 universes (sprint03/04/26); equity RTH microstructure with an institutional close-auction and news-driven volume regime is a distinct mechanism, and sprint38/39 never scored (n=0, data defect, not evidence).",
+  "power_argument": "SPY 30m stdev ~20bp; SE at n=300 ~1.15bp, min detectable edge at t=2 ~2.3bp; PASS needs net-of-T2 t>=2 so gross must exceed ~28bp. 1 symbol x ~63 validation RTH days x cap10/day = up to 630 entries, clears the 300 floor. Null criteria can fail: random-entry C0 on the same loader must show net ~-26bp.",
+  "symbols": [
+   "SPY"
+  ],
+  "signal": "volspike_drift",
+  "params": {
+   "vol_window": 60,
+   "spike_mult": 3.0,
+   "ret_window": 5
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 10,
+  "prerequisite": "Alpaca IEX 1m RTH loader live in data.py; re-run C0/C1 on the new loader before scoring."
+ },
+ "errors": [
+  "duplicate spec name (freeze rule: no re-registration)"
+ ]
+}

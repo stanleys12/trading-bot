@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint36_taker_imbalance_crypto_scalp",
+  "hypothesis": "Aggressor (taker) buy/sell volume imbalance over a short rolling window predicts next-15min directional drift in BTCUSD/ETHUSD, tradeable net of crypto taker fees.",
+  "power_argument": "Target n>=300: 2 symbols x ~15 entries/day (top/bottom imbalance decile trigger) x ~10 trading days = ~300 trades. At n=300 with assumed 15min-return vol ~45bps, SE~2.6bps; can detect edges down to ~6-8bps at conventional power. Crypto T2 round-trip friction ~15-20bps, so decision threshold is net edge > 20bps -- large enough to be economically meaningful, small enough to be falsifiable (exp14 lesson: this can fail under the null).",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_minutes": 5,
+   "entry_quantile": 0.85,
+   "exit": "time_stop"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 15
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

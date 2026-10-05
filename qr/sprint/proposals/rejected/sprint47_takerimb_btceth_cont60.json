@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint47_takerimb_btceth_cont60",
+  "hypothesis": "Extreme rolling taker-buy/sell imbalance on BTC and ETH 1m bars predicts same-sign continuation over 60 minutes, net of T2 fees.",
+  "power_argument": "2 symbols x entry_per_day_cap 12 = up to 24 entries/day; ~13+ validation days gives >=300 trades. Min detectable net edge ~2.8*sigma/sqrt(n); assuming per-trade net sigma ~30 bps (to be confirmed on the train window), n=300 gives ~4.9 bps. Pass requires mean_net>0, t>=2.5, n>=300; a zero-edge signal yields t~0, so the criterion can fail under the null. A train-window dry count must project >=300 validation trades before registration, otherwise the percentile threshold widens.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_minutes": 15,
+   "entry_percentile": 90,
+   "direction": "with_imbalance",
+   "min_gap_minutes": 30
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 12
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

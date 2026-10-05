@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint24_qhour_open_momentum_majors",
+  "hypothesis": "Directional moves in the first 3 minutes after each 15-min quarter-hour boundary continue through the remainder of the block on BTCUSD/ETHUSD, driven by liquidity-clock/rebalancing flow.",
+  "power_argument": "96 quarter-hour boundaries/day/symbol x 2 symbols x ~20-session test window = ~3840 candidate events; with a 0.15% trigger filter expect >=300 qualifying trades. Realized costs run ~9.6bps median (briefing NBBO recon), so set min detectable edge at 12bps net to require effects comparable in size to the taker_imbalance family results (11-29bps) and clear of cost noise at t>3.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "qhour_open",
+  "params": {
+   "lookback_bars": 3,
+   "trigger_pct": 0.15,
+   "direction": "continuation"
+  },
+  "hold_minutes": 12,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 4
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

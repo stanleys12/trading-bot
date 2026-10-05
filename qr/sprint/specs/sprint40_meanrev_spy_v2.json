@@ -1,0 +1,18 @@
+{
+ "name": "sprint40_meanrev_spy_v2",
+ "hypothesis": "10m z-score mean-reversion, closed on all 3 crypto universes (sprint02/17/31, all FAIL well-powered); SPY microstructure untested, pending equity data.",
+ "power_argument": "SPY 15m stdev ~15bp; SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp vs ~26bp T2 cost floor. 1 symbol x ~63 val days x cap10/day = up to 630 entries, clears 300 floor once data exists.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "meanrev",
+ "params": {
+  "ret_window": 10,
+  "z_window": 120,
+  "threshold": 2.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "HELD -- requires data.py Alpaca IEX 1m RTH equity loader. Do not register until loader lands; this is the 12th SPY spec on the same blocker -- build-vs-abandon decision is overdue."
+}

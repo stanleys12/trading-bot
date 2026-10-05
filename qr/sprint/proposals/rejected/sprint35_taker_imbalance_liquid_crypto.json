@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_crypto",
+  "hypothesis": "Short-window taker buy/sell volume imbalance (aggressor flow) predicts 5-15min directional continuation in the most liquid crypto pairs, large enough to clear T1 fees+spread.",
+  "power_argument": "1-min bars, BTCUSD+ETHUSD, signal checked every 5min during full 24h crypto session over a 30-day window yields an estimated 2000+ candidate triggers before entry_per_day_cap binds, comfortably clearing the >=300 trade floor. Assuming return dispersion in line with sprint32/34 net-return sd (~40bps), n=300 gives power>=0.8 at alpha=0.05 to detect a minimum edge of 6bps net of ~2bps T1 taker cost.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 5,
+   "imbalance_threshold": 0.6,
+   "rebalance_check_freq_min": 5
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "spec": {
+  "name": "sprint40_taker_imbalance_etf_v1",
+  "hypothesis": "5-minute taker buy/sell volume imbalance on liquid index ETFs predicts same-direction price drift over the following 15 minutes (order-flow momentum), net of T1 costs.",
+  "power_argument": "Single-symbol SPY cannot reach n>=300 in the remaining sprint window. Pooling 4 liquid, low-cross-correlation index ETFs (SPY, QQQ, IWM, DIA) at entry_per_day_cap=6 each = 24 entries/day x ~13 remaining pre-registered trading days = ~312 trades, clearing the 300 floor. Assumed per-trade 15-min return stdev ~15bps (historical ETF intraday vol) gives SE = 15/sqrt(312) ~ 0.85bps; a t=2 threshold implies min detectable edge ~1.7bps net. T1 round-trip cost (~1-2bps) leaves this edge economically meaningful if found, and the null (0bps) is falsifiable \u2014 unlike sprint37-39, which returned n=0 and never actually tested a null.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM",
+   "DIA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "imbalance_threshold": 0.6,
+   "direction": "momentum",
+   "confirm_signal": "qhour_open"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

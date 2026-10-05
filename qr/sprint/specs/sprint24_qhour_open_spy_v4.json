@@ -1,0 +1,18 @@
+{
+ "name": "sprint24_qhour_open_spy_v4",
+ "family": "sprint-intraday",
+ "hypothesis": "Quarter-hour boundary VWAP-slicing algo flow (arXiv 2607.09426) predicts 15m drift on SPY RTH bars; frozen params carried over unchanged from sprint15 (blocked twice, sprint11/sprint14, by a confirmed DATA-DEFECT: data.py has no equity loader).",
+ "power_argument": "SPY 15m return stdev ~15bp; SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp, well below the ~26bp T2 cost floor (C0/C1). 26 boundary bars/day RTH, cap 8/day x ~63 validation days = up to 504 possible entries, clears the 300 floor.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8,
+ "prerequisite": "BLOCKED until data.py gains a free equity 1m RTH loader (Alpaca IEX, per qr/execution/live_paper.py) with the same point-in-time integrity as the crypto loader. Do not register/run before that lands."
+}

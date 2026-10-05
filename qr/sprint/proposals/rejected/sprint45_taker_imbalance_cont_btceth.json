@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint45_taker_imbalance_cont_btceth",
+  "hypothesis": "Extreme 5-min taker-buy imbalance (z-score vs trailing 24h) predicts same-direction BTC/ETH return over the next 30 min beyond T1 costs.",
+  "power_argument": "Expected validation trades >=300: 2 symbols x cap 6/day x >=25 validation days. Assumed 30m return sd ~45bps, so SE at n=300 is ~2.6bps. Clustering may cut effective n by ~2x, giving an SE of ~3.7bps. Minimum detectable net edge ~8bps at one-sided 97.5%. Gross edge must exceed round-trip cost plus 8bps. Below 300 trades, the run is declared unpowered, not FAIL. The validation window length is an assumption to check against the charter.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "bar_minutes": 5,
+   "z_lookback_hours": 24,
+   "z_threshold": 2.0,
+   "direction": "with_imbalance"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

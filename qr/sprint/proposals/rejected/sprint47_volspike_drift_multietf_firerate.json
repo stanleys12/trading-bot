@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint47_volspike_drift_multietf_firerate",
+  "hypothesis": "After a 1m volume-spike with directional displacement, ETF returns drift in the displacement direction over the hold window, net of T1 costs.",
+  "power_argument": "3 symbols x ~0.5 entries/day x ~25 sessions >= 300 validation trades; assumed sd 12bps (verify on train) -> SE ~0.7bps; min detectable net edge ~2.1bps at t>=3; n<300 => verdict 'unpowered' not FAIL; n_train>=100 gate pre-registered.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "IWM"
+  ],
+  "signal": "volspike_drift (factory library; threshold calibrated on train only to fire >=1/day/symbol)",
+  "params": {
+   "vol_z_min": "calibrated on train",
+   "displacement_bps_min": "calibrated on train"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 1
+ },
+ "errors": [
+  "unknown signal volspike_drift (factory library; threshold calibrated on train only to fire >=1/day/symbol)"
+ ]
+}

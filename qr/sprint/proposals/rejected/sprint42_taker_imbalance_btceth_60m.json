@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_btceth_60m",
+  "hypothesis": "Extreme 5-minute taker buy/sell imbalance in BTC/ETH predicts continuation over the next 60 minutes, net of T1 fees.",
+  "power_argument": "2 symbols x cap 3/day x >=60 validation days = >=360 expected trades (>=300). Assuming per-trade net sd ~60bps, SE ~3.2bps at n=360, so min detectable net edge ~10bps at t=3. Null expectation is negative (fees), so the criterion can fail. Smoke check: abort as INVALID if loader returns n=0 on the train window.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_minutes": 5,
+   "threshold_z": 2.0,
+   "direction": "continuation"
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

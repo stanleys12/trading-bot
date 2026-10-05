@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint17_predmarket_spread_scan",
+  "hypothesis": "Kalshi and Polymarket price matched real-world binary events differently often enough, by enough margin net of fees, to support convergence trades (IMDEA: ~$40M/yr extracted industry-wide; 1.5-4.5% cross-venue spreads documented). Settlement-definition mismatch is the primary confound.",
+  "power_argument": "T0 tier: mechanism-check/measurement only, never a verdict (CHARTER T0). Target >=300 matched event-pairs (resolution-criteria-text matched, not title-matched) over a 30-day monitoring window across the two venues' open markets; min detectable mean spread at t=2 stated as 50bp gross -- must clear T2-equivalent all-in cost (~10bp/side + settlement risk) before any paper trade is proposed.",
+  "symbols": [
+   "N/A -- prediction-market event tickers, not equities/crypto"
+  ],
+  "signal": "kalshi_polymarket_spread (NEW -- not yet in factory.py SIGNALS; requires Kalshi + Polymarket public-API connector before validator can register)",
+  "params": {
+   "match_method": "resolution_criteria_text",
+   "min_gross_spread_bps": 50
+  },
+  "hold_minutes": "N/A (monitoring pass, no positions)",
+  "fee_tier": "T0",
+  "entry_per_day_cap": 0
+ },
+ "errors": [
+  "unknown signal kalshi_polymarket_spread (NEW -- not yet in factory.py SIGNALS; requires Kalshi + Polymarket public-API connector before validator can register)",
+  "T0 is mechanism-check only, cannot be the registered tier"
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_slow_24h_hold_top12",
+  "hypothesis": "Order-flow imbalance predicts crypto returns at multi-hour to multi-day lags (EFMA 2025). Prior taker_imbalance specs used short holds where T2 costs (~26bp) exceed any edge. A slow-smoothed extreme imbalance with a 24h hold tests the literature's actual horizon, with the cost/edge ratio cut roughly 10x versus 15-min holds. Long-only, one entry per symbol per day.",
+  "power_argument": "12 symbols x ~92 validation days, cap 1/day/symbol => <=1104 entries; z>2.5 on 240-min smoothed imbalance is expected to fire ~30-45% of symbol-days, giving ~300-500 validation trades (n>=300 required; if the validator rejects, loosen threshold to 2.0 before freezing). 24h return std ~300bp => min detectable per-trade edge at n=400, t=2 is ~30bp, above the T2 cost floor (~26bp). The criterion can fail under the null (t>=2.0 net of T2 with same-sign research effect); only a large edge is detectable.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "BNBUSDT",
+   "SOLUSDT",
+   "XRPUSDT",
+   "ADAUSDT",
+   "DOGEUSDT",
+   "AVAXUSDT",
+   "LINKUSDT",
+   "LTCUSDT",
+   "TRXUSDT",
+   "DOTUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 240,
+   "z_window": 10080,
+   "threshold": 2.5
+  },
+  "hold_minutes": 1440,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 12
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

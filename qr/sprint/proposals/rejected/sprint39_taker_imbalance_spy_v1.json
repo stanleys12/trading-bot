@@ -1,0 +1,22 @@
+{
+ "spec": {
+  "name": "sprint39_taker_imbalance_spy_v1",
+  "hypothesis": "Short-window taker buy/sell volume imbalance on SPY 1-min bars predicts short-horizon continuation in the imbalance direction, net of costs.",
+  "power_argument": "Threshold calibrated to ~15-20 fires/trading day; ~20-day sealed window yields ~300-400 entries, powered (alpha=0.05, power~0.8) to detect >=3bps/trade net edge given ~5-7bps/min SPY intraday return stdev.",
+  "symbols": [
+   "SPY"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_bars": 5,
+   "threshold_pctile": 90,
+   "direction": "trend_follow"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 15
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

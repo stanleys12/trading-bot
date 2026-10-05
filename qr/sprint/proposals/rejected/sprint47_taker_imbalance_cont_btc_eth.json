@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_cont_btc_eth",
+  "hypothesis": "Extreme one-sided taker flow (top-decile 15m imbalance z) continues in the same direction over 30m by more than round-trip costs",
+  "power_argument": "Expected validation trades ~360 (>=300) from 2 symbols x <=3 entries/day x ~60 days; assumed net sd ~40bps gives SE ~2.1bps, min detectable net edge ~6.3bps at t>=3; pass requires t>=3 net of T1 fees; train-window n>0 required before any validation run",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_min": 15,
+   "z_lookback_min": 1440,
+   "z_threshold_pct": 90,
+   "direction": "with_flow"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

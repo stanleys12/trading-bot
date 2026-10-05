@@ -1,0 +1,18 @@
+{
+ "name": "sprint44_volspike_drift_spy_v5_gate_passed",
+ "hypothesis": "After a 3x volume spike on SPY 1m RTH bars, the following 30m drift is non-zero. Equity close-auction and news-volume flow is a different mechanism from the closed crypto volspike universes. Sprint38/39/41/43 produced n=0 from loader defects, so this mechanism has not been scored.",
+ "power_argument": "Expected validation trades ~63 RTH days x cap 10 = up to 630, above the 300 floor. SPY 30m stdev is ~20bp, so SE at n=300 is ~1.15bp and the min detectable edge at t=2 is ~2.3bp. PASS needs net-of-T2 t>=2, so gross must exceed ~28bp, well above the detectable floor. The null can fail: C0 on this loader must give net ~-26bp, and a C0 pass (harness leak) halts the sprint.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "vol_window": 60,
+  "spike_mult": 3.0,
+  "ret_window": 5
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "auditor-confirmed n>0 on research AND validation windows, plus C0/C1 pass on the current loader, before scoring"
+}

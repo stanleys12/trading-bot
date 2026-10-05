@@ -1,0 +1,70 @@
+# Reproducible configuration for the v1 systematic screen.
+# Every result in reports/ was produced from exactly these settings.
+#
+#   python qr/data/universe.py          # point-in-time universe from archives
+#   python qr/data/prices.py            # OHLCV panel
+#   python -m pytest qr/tests -q        # must be green before trusting anything
+#   python qr/research/screen.py        # the screen
+#   python qr/research/deep_dive.py <signal> [invert]
+
+run_id: screen_v1
+seed: 20260811
+
+data:
+  universe_source: nasdaqtrader_symbol_directory_via_internet_archive
+  universe_snapshots_from: 2018-11-29
+  universe_snapshots_to: 2026-08-12
+  price_source: yahoo_finance_via_yfinance
+  price_start: 2018-01-01
+  price_end: 2026-08-11
+  auto_adjust: false            # raw OHLC + separate adj_factor. NEVER true.
+  include_delisted: true        # to the extent prices are recoverable
+  known_limitations:
+    - "Only ~12% of delisted names have recoverable price history."
+    - "Universe snapshots are irregular; worst gap 721 days (2020-02 to 2022-01)."
+    - "No bid/ask data; spreads are ESTIMATED via Corwin-Schultz."
+    - "No borrow rates; shortability is a conservative price/liquidity proxy."
+    - "No earnings dates, float, or index membership."
+    - "Yahoo is unversioned and can silently revise history."
+
+splits:
+  dev_fraction: 0.60
+  val_fraction: 0.20
+  test_fraction: 0.20
+  rule: "TEST is scored once, at the end, and never used for selection."
+
+backtest:
+  holding_days: 10
+  rebalance_days: 10
+  lookback_days: 280
+  long_quantile: 0.10
+  short_quantile: 0.10
+  long_only: false
+  min_price: 2.0
+  min_adv_dollar: 2.0e6
+  min_names_per_side: 8
+  capital: 100000.0
+
+costs:
+  commission_per_share: 0.005
+  commission_min: 1.00
+  sec_fee_rate: 0.0000278
+  spread_estimator: corwin_schultz_21d
+  spread_floor_bps: 5.0
+  spread_capture: 1.0           # we cross the full spread
+  impact_eta: 0.8               # sqrt-law
+  max_adv_participation: 0.02
+  borrow_rate_annual: 0.05
+  short_min_price: 5.0
+  short_min_dollar_volume: 5.0e6
+
+validation:
+  leakage_canary: required_pass
+  walk_forward_folds: 5
+  purge_days: 20
+  embargo_days: 10
+  permutations: 25
+  multiple_testing: [bonferroni, benjamini_hochberg, deflated_sharpe]
+
+execution:
+  live_trading_enabled: false   # do not change

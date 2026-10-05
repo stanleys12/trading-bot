@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint44_takerimb_cont_btceth",
+  "hypothesis": "Extreme 15m taker-buy imbalance at quarter-hour opens predicts 60m continuation in BTC/ETH beyond T1 round-trip fees.",
+  "power_argument": "2 symbols x cap 6/day => ~12 trades/day; >=300 validation trades in ~25 days. Assumed 60m net SD ~40bps => SE ~2.3bps at n=300; min detectable mean net edge ~7bps at t>=3. Null cannot pass t>=3; n<300 => UNDERPOWERED not FAIL.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_min": 15,
+   "z_entry": 2.5,
+   "direction": "continuation",
+   "gate": "qhour_open"
+  },
+  "hold_minutes": 60,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

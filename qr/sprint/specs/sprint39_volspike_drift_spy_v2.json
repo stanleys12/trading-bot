@@ -1,0 +1,17 @@
+{
+ "name": "sprint39_volspike_drift_spy_v2",
+ "hypothesis": "Same mechanism as sprint38 (never actually scored, n=0): volume-spike drift (>=3x trailing 30m median volume, up-close bar) predicts 30m continuation on SPY, closing the last real cell of the volspike_drift family (crypto majors/altbasket/tail-liquidity all FAIL).",
+ "power_argument": "SPY 15m stdev ~15bp scaled to 30m (~21bp); SE at n=300 ~1.2bp, min detectable edge at t=2 ~2.4bp vs ~26bp T2 cost floor. 1 symbol x ~63 val days x cap10/day up to 630 entries, clears 300 floor -- CONTINGENT on loader.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "volspike_drift",
+ "params": {
+  "window": 30,
+  "k": 3.0
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10,
+ "prerequisite": "HELD -- do NOT submit to proposals/ until data.py SPY IEX 1m RTH loader lands AND registrar.py enforces prerequisite/HELD. Queue this first once unblocked."
+}

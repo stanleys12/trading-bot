@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint36_predmarket_crossvenue_monitor_build",
+  "hypothesis": "Kalshi/Polymarket same-question contracts diverge net of fees; monitoring-first per backlog P2 before any trade.",
+  "power_argument": "Infra prerequisite, not a trial spec. Once loader exists: target >=300 matched-question observations over a 60d monitor window to power a spread-frequency estimate at t=2.",
+  "symbols": [
+   "KALSHI_API",
+   "POLYMARKET_API"
+  ],
+  "signal": "predmarket_spread_monitor (NOT YET IN factory.SIGNALS -- build required)",
+  "params": {
+   "phase": "monitor_only",
+   "match_by": "resolution_criteria_text"
+  },
+  "hold_minutes": 0,
+  "fee_tier": "T0",
+  "entry_per_day_cap": 0,
+  "prerequisite": "factory.py signal fn + Kalshi/Polymarket loader; monitor before any registered paper trade"
+ },
+ "errors": [
+  "unknown signal predmarket_spread_monitor (NOT YET IN factory.SIGNALS -- build required)",
+  "T0 is mechanism-check only, cannot be the registered tier"
+ ]
+}

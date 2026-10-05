@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_megacap",
+  "hypothesis": "Short-horizon taker buy/sell imbalance (3min trailing, z-scored) predicts 10min continuation in tight-spread mega-cap equities, net of T1 costs; distinct from the momentum signals already falsified in sprint32/34 on illiquid names.",
+  "power_argument": "8 mega-cap names, |z|>=2 entry threshold expected to yield ~15-20 qualifying signals/name/day over a ~20-day test window (~1200-1600 raw), capped at 20/day total => n>=300-400. T1 round-trip cost ~4bps. Assuming ~40bps sd of 10min returns, MDE at n=300, alpha=0.05, power=0.8 is ~6.5bps -- above the cost hurdle, so a true null and a true edge are both detectable, unlike sprint33 (n=0, unpowered).",
+  "symbols": [
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "AVGO",
+   "TSLA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 3,
+   "entry_z": 2.0,
+   "exit": "time_based"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 20
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

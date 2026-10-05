@@ -1,0 +1,27 @@
+{
+ "spec": {
+  "name": "sprint47_taker_imbalance_slow_flow_majors",
+  "hypothesis": "Sustained extreme taker-buy share (4h smoothed, z>3 vs 30d) predicts 12h continuation in liquid USDT majors; prior taker_imbalance specs used short holds. New mechanism: multi-hour lag per EFMA 2025.",
+  "power_argument": "6 symbols x ~92 validation days x cap 1/day gives <=~550 entries; effective n after cross-symbol correlation is likely ~300. Assumed 12h sigma ~120bp (estimate, not measured), so SE ~7bp at n=300 and MDE at t=2 is ~14bp. T2 round trip is ~26bp, so PASS needs gross >~40bp, which can fail under the null. If validation n<300, mark UNPOWERED and do not score.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "BNBUSDT",
+   "ADAUSDT",
+   "AVAXUSDT",
+   "DOGEUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 240,
+   "z_window": 43200,
+   "threshold": 3.0
+  },
+  "hold_minutes": 720,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 1
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

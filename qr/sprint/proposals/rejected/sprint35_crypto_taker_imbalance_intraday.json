@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint35_crypto_taker_imbalance_intraday",
+  "hypothesis": "Short-horizon taker buy/sell volume imbalance on BTCUSD/ETHUSD predicts next-15min directional drift, net of realistic crypto taker fees.",
+  "power_argument": "Prior alt-basket intraday sprints (32,34) showed per-trade net-return stdev ~80-110bps (backed out from reported mean/t/n). At n=320 (target), 80% power, alpha=0.05 two-sided => min detectable edge ~12-15bps, comfortably above assumed T2 round-trip cost (~5-10bps) and enough to distinguish real edge from noise -- unlike sprint33 which ran ZERO trades (powered=False, not a valid rejection).",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "entry_threshold_z": 1.5,
+   "exit": "time_stop"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

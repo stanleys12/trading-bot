@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint35_predmkt_spread_monitor_kalshi_polymarket",
+  "status": "DRAFTED_NOT_SUBMITTED",
+  "hypothesis": "BACKLOG Priority 2 (only literature-backed door left after Priority 1/4 closed today): Kalshi/Polymarket cross-venue spreads on matched-resolution binaries persist net of fees.",
+  "power_argument": "MEASUREMENT phase only per exp14 rule; trade count/edge unknown until spread distribution is logged.",
+  "symbols": [],
+  "signal": "NOT IN FACTORY",
+  "params": {},
+  "hold_minutes": null,
+  "fee_tier": "n/a",
+  "entry_per_day_cap": 0,
+  "hard_blocker": "requires new data.py Kalshi+Polymarket loaders and resolution-text matcher; 8 prior rejections (sprint11,17,19,25,29,30,32,33) document this."
+ },
+ "errors": [
+  "unknown signal NOT IN FACTORY",
+  "fee_tier must be T0..T3"
+ ]
+}

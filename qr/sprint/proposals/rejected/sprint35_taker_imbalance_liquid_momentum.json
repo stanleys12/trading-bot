@@ -1,0 +1,30 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_momentum",
+  "hypothesis": "Short-window taker buy/sell volume imbalance at the open in liquid, tight-spread large-caps predicts 15-30min continuation, net of T1 costs -- a new signal on a different (liquid) universe than the twice-failed qhour_open/altbasket combo.",
+  "power_argument": "Proxy sigma ~45bps/trade for liquid mega-caps (vs ~110bps implied for the altbasket in sprint32). At n=300, 80%-power alpha=0.05 MDE = 2.8*sigma/sqrt(n) ~= 7.3bps, above the ~2-4bps T1 round-trip cost floor and within a plausible order-flow edge.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "TSLA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "imbalance_zscore_threshold": 1.5,
+   "direction": "continuation"
+  },
+  "hold_minutes": 20,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 4
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

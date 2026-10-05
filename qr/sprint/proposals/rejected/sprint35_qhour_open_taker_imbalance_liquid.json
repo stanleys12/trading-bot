@@ -1,0 +1,33 @@
+{
+ "spec": {
+  "name": "sprint35_qhour_open_taker_imbalance_liquid",
+  "hypothesis": "Opening-15min directional signal (qhour_open), confirmed by taker order-flow imbalance, predicts short-horizon returns in liquid mega-caps once slippage is controlled for (unlike the illiquid altbasket that failed twice).",
+  "power_argument": "12 liquid symbols x ~25 trading days x entry_per_day_cap=1 = up to 300 opportunities; sized to hit the charter's >=300-trade floor. Min detectable net edge ~15bps at alpha=0.05 given T1 fee tier (~2bps RT) and observed open-window return dispersion from sprint32/34 data \u2014 same methodology, smaller n so higher required effect size than the 34-36bps null already ruled out on illiquid names.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "TSLA",
+   "AVGO",
+   "JPM",
+   "XOM"
+  ],
+  "signal": "qhour_open",
+  "params": {
+   "confirm_filter": "taker_imbalance",
+   "imbalance_threshold_std": 1.0,
+   "open_window_min": 15
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 12
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

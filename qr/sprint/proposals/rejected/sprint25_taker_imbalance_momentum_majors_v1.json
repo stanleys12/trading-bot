@@ -1,0 +1,20 @@
+{
+ "spec": {
+  "name": "sprint25_taker_imbalance_momentum_majors_v1",
+  "hypothesis": "Taker imbalance predicts short-horizon continuation, not reversion, in majors \u2014 motivated by sprint22's reversion result (mean_net=-11.13bps, t=-9.35, n=475), whose sign implies the opposite-direction trade may carry the edge.",
+  "power_argument": "Inherit sprint22's exact sample construction (n=475 over the same window) which already demonstrated t=-9.35 for the fade; a same-magnitude effect in the flipped direction clears the >=300 trade / min-detectable-edge bar without new data collection.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": "inherit sprint22 registry entry verbatim (window, threshold) \u2014 only entry direction flipped from fade to follow",
+  "hold_minutes": "inherit sprint22 registry entry",
+  "fee_tier": "inherit sprint22 registry entry",
+  "entry_per_day_cap": "inherit sprint22 registry entry"
+ },
+ "errors": [
+  "fee_tier must be T0..T3",
+  "closed-door terms ['taker_imbalance', 'taker imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

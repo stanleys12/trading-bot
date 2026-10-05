@@ -1,0 +1,23 @@
+{
+ "name": "sprint32_breakout_tail_liquidity_altbasket",
+ "family": "sprint-intraday",
+ "hypothesis": "Breakout FAILED on majors (sprint01, T2) and liquid alts (sprint18, T2). Momentum/breakout literature (Liu-Tsyvinski et al., cited sprint18/26) predicts effects concentrate in smaller, less-liquid, higher-turnover names where information diffuses slower. sprint26/31 already opened this tail-liquidity/delisted basket for volspike_drift and meanrev (both FAIL well-powered); breakout is the last untested signal in the 5-signal x 3-liquidity-regime coverage matrix.",
+ "power_argument": "C0/C1 calibration: net_bps dispersion ~33bp std, T2 round-trip cost floor ~26bp -> min detectable edge at n=300, t=2 is ~2*33/sqrt(300)=3.8bp, well below the cost floor. sprint26 and sprint31 realized 4413 and 4323 validation trades respectively on this identical 8-symbol basket at cap8/day over the same ~92-day window; breakout's trigger is sparser than volspike/meanrev (sprint01 majors realized 1801 on 2 symbols, sprint18 alts realized 5866 on 8 symbols), so scaling sprint18's alt rate to this basket conservatively projects >=2000 trades, clearing the 300 floor with wide margin.",
+ "symbols": [
+  "BTCSTUSDT",
+  "MATICUSDT",
+  "GALAUSDT",
+  "SANDUSDT",
+  "MANAUSDT",
+  "CHZUSDT",
+  "ONEUSDT",
+  "ZILUSDT"
+ ],
+ "signal": "breakout",
+ "params": {
+  "window": 60
+ },
+ "hold_minutes": 60,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

@@ -1,0 +1,31 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+# market data, generated output and trading records stay local (results live in the private quant-log repo)
+data/
+qr/data/
+qr/sprint/data/
+qr/sprint/artifacts/
+qr/reports/
+fund/reports/
+fund/floor/
+fund/journal/
+fund/evals/
+results/
+*.parquet
+*.csv
+*.jsonl
+*.log
+*.db
+*.sqlite
+PAUSED

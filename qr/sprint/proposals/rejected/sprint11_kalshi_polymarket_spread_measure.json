@@ -1,0 +1,21 @@
+{
+ "spec": {
+  "name": "sprint11_kalshi_polymarket_spread_measure",
+  "hypothesis": "Resolution-text-matched Kalshi/Polymarket binary contracts on the same event show measurable cross-venue price spreads net of venue fees, per documented ~$40M/yr extraction and 1.5-4.5% spreads (IMDEA study, cited BACKLOG priority 2).",
+  "power_argument": "T0 mechanism-check, never a verdict (charter cost-model section): goal is to measure spread frequency/size, not score a strategy. Provisional trade-spec power (for the FOLLOW-ON registered spec once matching is built): ~30-60 concurrently active matched pairs scanned every 5min over a 60-day validation window = ~43,200 scan-observations; even at 1-2% crossing-spread frequency (literature-implied) that is >400 events, clearing the n>=300 floor. Min detectable edge at t=2 (~150bps assumed per-event stdev, not a briefing fact) is ~17bps, well below the documented 150-450bps median spread.",
+  "symbols": "dynamic \u2014 nightly resolution-text-matched Kalshi/Polymarket pairs, no fixed universe",
+  "signal": "xvenue_spread_capture (NEW \u2014 not yet in factory.py SIGNALS; requires new API connectors + resolution-text matcher)",
+  "params": {
+   "min_spread_bps": 150,
+   "match_confidence_threshold": "text-similarity gate, tune during measurement",
+   "rescan_interval_minutes": 5
+  },
+  "hold_minutes": "event-driven (until settlement) \u2014 does not fit fixed hold_minutes field, flagging as charter gap",
+  "fee_tier": "T2-analog (~10-20bps combined venue+gas, provisional \u2014 no registered cost tier exists yet for prediction markets; needs a charter cost-model amendment before a real verdict spec)",
+  "entry_per_day_cap": 5
+ },
+ "errors": [
+  "unknown signal xvenue_spread_capture (NEW \u2014 not yet in factory.py SIGNALS; requires new API connectors + resolution-text matcher)",
+  "fee_tier must be T0..T3"
+ ]
+}

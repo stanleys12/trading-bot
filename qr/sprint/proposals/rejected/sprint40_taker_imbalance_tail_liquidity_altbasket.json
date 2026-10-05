@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint40_taker_imbalance_tail_liquidity_altbasket",
+  "hypothesis": "taker_imbalance FAILED well-powered on majors (sprint20/22) and liquid-8-alts (sprint13/21/23), both directions. qhour_open's identical majors->alts->tail-liquidity progression (sprint09->16->34) established this design pattern. Liu-Tsyvinski et al (cited sprint18/26/32/34) predicts order-flow effects concentrate in smaller, less-liquid, higher-turnover names. Last untested cell in the 5-signal x 3-universe matrix.",
+  "power_argument": "sprint34 (same basket, qhour_open) validation: n=1616, t=-18.392, mean_net=-36.427bps -> back-solved sigma ~= 36.427*sqrt(1616)/18.392 ~= 79.6bps. At n=300, 80% power, two-sided 5%: min detectable edge = 2.8*79.6/sqrt(300) ~= 12.9bps, below T2 cost floor (~26bp). sprint34 realized 1616 validation trades under identical caps/basket, so n>=300 is near-certain.",
+  "symbols": [
+   "BTCSTUSDT",
+   "MATICUSDT",
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "imbalance_threshold": "p90",
+   "lookback_window_minutes": 5,
+   "direction": "fade_extreme"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

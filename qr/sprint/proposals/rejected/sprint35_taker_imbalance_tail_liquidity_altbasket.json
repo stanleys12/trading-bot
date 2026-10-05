@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_tail_liquidity_altbasket",
+  "hypothesis": "taker_imbalance (EFMA 2025 order-flow) FAILED cleanly on majors (sprint05, n=1840,t=-46.6) and liquid-8-alts (sprint13, n=7269,t=-80.2) with correctly-keyed params. sprint22/23's 'reversion' cells never actually ran (CONFIRMED param-key mismatch -- silently used continuation defaults). Microstructure literature (Liu-Tsyvinski et al., cited sprint18/26/34) predicts order-flow effects concentrate in smaller, less-liquid, higher-turnover names -- this is the last untested cell in the matrix for this signal.",
+  "power_argument": "Dispersion ~33bp std, T2 cost floor ~26bp (C0/C1) -> min detectable edge at n=300,t=2 ~3.8bp. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; sprint34 (same basket, cap8, accounting for BTCSTUSDT/MATICUSDT gaps) realized 1616 validation trades, and sprint05's z>1.5 threshold fired ~920 times/symbol/92d on liquid pairs, so n>=300 is near-certain.",
+  "symbols": [
+   "BTCSTUSDT",
+   "MATICUSDT",
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 5,
+   "z_window": 120,
+   "threshold": 1.5
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

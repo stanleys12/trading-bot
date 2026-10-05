@@ -1,0 +1,18 @@
+{
+ "name": "C1_planted_edge_control",
+ "family": "sprint-control",
+ "hypothesis": "CONTROL - identical pipeline with +40bp/trade (amended 2026-08-26a: must exceed measured ~26bp T2 round-trip) synthetically injected must PASS at T2; a fail means the harness cannot detect a deployable edge",
+ "power_argument": "Random entries at ~10/day on 2 symbols over a 92-day validation window yield ~1800 trades; at per-trade vol of tens of bps, t>=2 under the null occurs ~2.3% of the time one-sided. A PASS is therefore strong evidence of harness defect, which is the point of this control.",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "random",
+ "params": {
+  "rate": 0.00694,
+  "seed": 42
+ },
+ "hold_minutes": 30,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 10
+}

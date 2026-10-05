@@ -1,0 +1,18 @@
+{
+ "name": "sprint12_taker_imbalance_btc_eth",
+ "hypothesis": "Short-horizon taker buy/sell volume imbalance in BTCUSD/ETHUSD order flow predicts a net-positive short-hold return, exploitable after realistic T1 costs.",
+ "power_argument": "1-min bars, BTCUSD+ETHUSD, ~20 trading days, imbalance threshold loosened vs sprint10 (which yielded n=0) to target 15-20 qualifying entries/symbol/day -> expected >=300+ trades in-window. Powered to detect a minimum net edge of ~5bps at conventional significance given T1 fees + spread; if n<300 again the run itself is diagnostic evidence of a feed/threshold defect, not a null result.",
+ "symbols": [
+  "BTCUSD",
+  "ETHUSD"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "lookback_minutes": 5,
+  "imbalance_threshold": 0.35,
+  "confirm_bars": 1
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T1",
+ "entry_per_day_cap": 20
+}

@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint33_taker_imbalance_15m_majors",
+  "hypothesis": "5-minute aggressive taker buy/sell volume imbalance predicts 15-minute forward continuation in BTCUSD/ETHUSD; distinct signal family from the falsified price-pattern (meanrev/breakout) sprints, tested on liquid majors to isolate signal quality from the altbasket liquidity-cost confound seen in sprint31/32.",
+  "power_argument": "2 symbols x ~8 qualifying |imbalance|>0.3 events/day x ~20-day sample >= 300 trades; at realized net-return sd ~35bps (per sprint31/32 magnitude), n=320 detects ~4bps min edge at power=0.8, alpha=0.05 -- well below the 25-34bps cost drag that killed the altbasket tests, so a real edge should survive if present",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_minutes": 5,
+   "imbalance_threshold": 0.3,
+   "direction": "with_imbalance"
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

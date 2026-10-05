@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint33_taker_imbalance_majors_mom",
+  "hypothesis": "Short-horizon taker buy/sell volume imbalance (order-flow imbalance, not price-based) predicts continuation in the top-of-book liquid majors (BTCUSD, ETHUSD) over a 5-10min hold, net of T1 costs -- distinct mechanism from the price-based mean-reversion/breakout signals that failed on tail-liquidity alts in sprint31/32.",
+  "power_argument": "BTCUSD+ETHUSD trade continuously with tight spreads (unlike the alt basket, where -25 to -34bps mean_net at t~-20 in sprint31/32 was cost bleed, not signal absence). At entry_per_day_cap=12 across 2 symbols over the sprint window, expect n>=300+ trades. Assuming short-horizon return stdev ~60-70bps (majors, 5-10min), min detectable edge at t=2, n=300 is ~2*65/sqrt(300)=7.5bps -- achievable given T1 round-trip cost (~2-4bps) is far below the alt-basket cost regime that killed 31/32.",
+  "symbols": [
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_minutes": 5,
+   "imbalance_threshold": 0.6,
+   "direction": "continuation"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 12
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

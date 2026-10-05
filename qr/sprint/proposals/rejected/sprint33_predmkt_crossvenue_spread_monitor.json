@@ -1,0 +1,20 @@
+{
+ "spec": {
+  "name": "sprint33_predmkt_crossvenue_spread_monitor",
+  "hypothesis": "Kalshi and Polymarket price economically-identical event contracts with measurable, exploitable spreads net of fees; settlement-definition mismatch (not spread existence) is the main threat to tradeability.",
+  "power_argument": "This is a measurement phase, not a powered trade backtest \u2014 no t-stat criterion applies yet (forcing one would violate the exp14 no-can't-fail rule on data we don't have). Falsifiable gate for phase 2: if <300 spread-observations/week clear (venue spread net of both fee schedules) AND pass manual settlement-text matching over a 14-day monitoring window, door closes as sub-scale; else proceeds to a powered paper-backtest spec with same 300-trade/t=2 standard.",
+  "symbols": "N/A \u2014 event-contract pairs matched by resolution-criteria text, not tickers",
+  "signal": "cross_venue_spread_monitor",
+  "params": {
+   "monitor_window_days": 14,
+   "min_spread_bps_net": 150
+  },
+  "hold_minutes": "N/A (event-driven, resolves at market settlement)",
+  "fee_tier": "new tier required \u2014 Kalshi/Polymarket fee schedules not yet in cost model, must be registered before phase 2",
+  "entry_per_day_cap": "N/A this phase; max concurrently monitored pairs = 25"
+ },
+ "errors": [
+  "unknown signal cross_venue_spread_monitor",
+  "fee_tier must be T0..T3"
+ ]
+}

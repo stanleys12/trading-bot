@@ -1,0 +1,24 @@
+{
+ "spec": {
+  "name": "sprint24_taker_imbalance_continuation_majors_v2",
+  "family": "sprint-intraday",
+  "hypothesis": "Smoothed taker-buy volume imbalance (order-flow, EFMA 2025) predicts short-horizon CONTINUATION on liquid majors (BTCUSDT, ETHUSDT); untested twice (sprint10, sprint12) due to CONFIRMED DATA-DEFECT (BTCUSD vs BTCUSDT symbol mismatch, identical failure class to the sprint11/14 SPY defect, fixed per sprint22_v2 precedent). Last untested cell in the taker_imbalance x {continuation,reversion} x {majors,altcoins} matrix; other three cells FAIL well-powered.",
+  "power_argument": "Back-solving sprint21 (continuation, altcoins, identical params smooth=30/z_window=1440/threshold=2.0, cap5): n=2165 validation trades / 8 symbols / ~92 validation days = ~2.9 qualifying entries/symbol/day. Applying that trigger rate to 2 majors x ~92 validation days x cap8 projects ~530 trades, clearing the 300 floor with margin even if majors trigger less often than alts. Per-trade sigma back-solved from sprint21 (mean_net -29.05bps, t=-48.61, n=2165): sigma = 29.05*sqrt(2165)/48.61 ~= 27.8bps. At n=300, 80% power, two-sided 5%: min detectable edge = 2.8*27.8/sqrt(300) ~= 4.5bps net, well below the ~26bps T2 cost floor (C0/C1) -- criteria can fail under the null.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.0
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint45_taker_imbalance_tail_liquidity_altbasket",
+  "hypothesis": "Extreme 30m-smoothed taker-buy imbalance (z>2.5 over 1440m) predicts 30m continuation in tail-liquidity alts, where order-flow information is absorbed slowly (Liu-Tsyvinski; EFMA 2025). Majors and liquid alts are untested for this signal in the sprint, so this cell is the untested one, not a retread of closed volspike/breakout/qhour cells.",
+  "power_argument": "Tail-liquidity basket realized 4413 validation trades in sprint26 under identical caps, so n>=300 is near-certain. 30m dispersion ~60bp std assumed from the sprint26 artifact (to be re-checked): SE at n=1000 is ~1.9bp, min detectable edge at t=2 ~3.8bp, below the ~26bp T2 cost floor, so PASS needs gross above ~30bp. The null can fail: C0 gives net ~-26bp.",
+  "symbols": [
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT",
+   "MATICUSDT",
+   "BTCSTUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.5
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

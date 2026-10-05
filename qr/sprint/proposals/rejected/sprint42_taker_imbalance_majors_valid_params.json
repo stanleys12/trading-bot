@@ -1,0 +1,23 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_majors_valid_params",
+  "hypothesis": "Sustained extreme taker-buy share on BTCUSDT/ETHUSDT (z>2 of 30m-smoothed imbalance vs a 1-day baseline) precedes positive 15m drift. Prior taker_imbalance specs used param keys the signal does not read, so none scored; this is the first valid scoring.",
+  "power_argument": "2 symbols x cap 3/day x ~92 validation days = up to ~550 entries, above the 300 floor if the trigger fires >=2-3/day. 15m sigma ~30bp, SE at n=300 ~1.7bp, min detectable edge at t=2 ~3.5bp; PASS needs net-of-T2 t>=2, i.e. gross >~26-28bp. Criteria can fail under the null: C0 random-entry on the same pipeline must show net ~-26bp.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.0
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

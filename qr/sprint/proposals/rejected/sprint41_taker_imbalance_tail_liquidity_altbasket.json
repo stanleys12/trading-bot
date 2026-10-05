@@ -1,0 +1,28 @@
+{
+ "spec": {
+  "name": "sprint41_taker_imbalance_tail_liquidity_altbasket",
+  "hypothesis": "Closes the last untested cell (taker_imbalance x tail-liquidity-altbasket) in the 5-signal x 3-universe order-flow matrix; qhour_open/breakout/meanrev/volspike_drift all FAIL on this universe (sprint26/31/32/34).",
+  "power_argument": "C0/C1 calibration: dispersion ~33bp std, T2 cost floor ~26bp -> min detectable edge at n=300,t=2 ~3.8bp. Same 8-symbol basket + cap8/day realized 1616-4413 validation trades under identical caps (sprint26/34); taker_imbalance's single-condition trigger is less restrictive than qhour_open's compound trigger, so n>=300 is near-certain.",
+  "symbols": [
+   "MATICUSDT",
+   "GALAUSDT",
+   "SANDUSDT",
+   "MANAUSDT",
+   "CHZUSDT",
+   "ONEUSDT",
+   "ZILUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 30,
+   "z_window": 1440,
+   "threshold": 2.0
+  },
+  "hold_minutes": 15,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 8
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

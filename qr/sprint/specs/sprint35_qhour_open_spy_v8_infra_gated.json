@@ -1,0 +1,17 @@
+{
+ "name": "sprint35_qhour_open_spy_v8_infra_gated",
+ "hypothesis": "Quarter-hour boundary VWAP-slicing flow (arXiv 2607.09426) predicts 15m SPY drift \u2014 untested cell (equity, not crypto) for a mechanism already closed on crypto majors/altcoins.",
+ "power_argument": "SPY 15m stdev ~15bp; SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp vs ~26bp T2 cost floor (C0/C1). 26 boundary bars/day RTH x cap8 x ~63 val days = up to 504 entries, clears 300 floor.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8,
+ "prerequisite": "HELD \u2014 do not register/run until data.py gains an Alpaca IEX 1m RTH equity loader. 8th attempt; prior 7 all failed unpowered on this same missing dependency."
+}

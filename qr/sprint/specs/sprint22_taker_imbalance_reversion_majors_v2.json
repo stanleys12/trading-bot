@@ -1,0 +1,18 @@
+{
+ "name": "sprint22_taker_imbalance_reversion_majors_v2",
+ "hypothesis": "Short-horizon taker buy/sell volume imbalance on liquid majors predicts mean reversion over 15m; sprint20 never tested this (CONFIRMED DATA-DEFECT: symbols registered as BTCUSD/ETHUSD, unresolvable by the Binance-vision loader which requires BTCUSDT/ETHUSDT filenames -- identical failure class to the sprint11/14 SPY defect).",
+ "power_argument": "Empirical calibration from sprint21 (n=2165, 15m hold, alts): per-trade sigma ~28bps. Majors typically equal-or-tighter vol. At n=300, 80% power, two-sided 5%: min detectable edge = 2.8*28/sqrt(300) ~= 4.5bps gross-equivalent; scaling to majors' likely sigma 30-40bps gives ~5-6.5bps. T1 round-trip cost ~2bps+slippage, so detectable edge clears T1 fees >2x, satisfying the actionability bar. Registering T1 (maker-feasible) per charter's fill-rate requirement: entries are limit orders posted at the p90 imbalance trigger with a 1-minute time-in-force before falling back to no-fill (never taker-cross), addressing the exp17 adverse-selection lesson -- a stale/adversely-selected fill is excluded, not counted as a trade. Entry_per_day_cap=3 x 2 symbols x ~90-day validation window budgets to >=300 qualifying entries at p90 threshold.",
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "imbalance_threshold": "p90",
+  "lookback_window_minutes": 5,
+  "direction": "fade_extreme"
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T1",
+ "entry_per_day_cap": 3
+}

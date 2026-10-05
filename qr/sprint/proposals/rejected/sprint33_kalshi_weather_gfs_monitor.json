@@ -1,0 +1,19 @@
+{
+ "spec": {
+  "name": "sprint33_kalshi_weather_gfs_monitor",
+  "hypothesis": "Kalshi city-temperature markets misprice relative to NOAA GFS ensemble mean/spread; documented retail bot profit (~$1.8k); model-vs-market mechanism, distinct from the 30/30-FAIL price-prediction families.",
+  "power_argument": ">=300 matched market-settlement observations across cities/dates required before any traded t-stat claim; BLOCKED pending (1) GFS ensemble puller, (2) Kalshi weather-market mapper, (3) new factory.py signal fn. Monitor-first, zero trades tonight, per BACKLOG Priority 3.",
+  "symbols": [
+   "KALSHI_WEATHER_GFS_PAIRS_TBD"
+  ],
+  "signal": "weather_gfs_edge_MISSING_BUILD_FIRST",
+  "params": {},
+  "hold_minutes": 0,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 0,
+  "prerequisite": "route to backtest_auditor/infra: data.py GFS+Kalshi loader + factory.py signal fn. Do not re-register as a trade spec until code lands (predmkt_spread precedent: 6x rejected on same defect)."
+ },
+ "errors": [
+  "unknown signal weather_gfs_edge_MISSING_BUILD_FIRST"
+ ]
+}

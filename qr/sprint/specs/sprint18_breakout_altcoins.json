@@ -1,0 +1,23 @@
+{
+ "name": "sprint18_breakout_altcoins",
+ "family": "sprint-intraday",
+ "hypothesis": "sprint01's 60-min rolling-high breakout FAILED on BTCUSDT/ETHUSDT; momentum/breakout literature (Liu-Tsyvinski et al.) finds momentum effects concentrate in smaller, less liquid coins where information diffuses slower -- last untested cell in the 5-signal x {majors,alts} coverage matrix.",
+ "power_argument": "C0/C1 measured dispersion ~33bp std, T2 round-trip cost floor ~26bp -> min detectable edge at n=300,t=2 is ~3.8bp, well below the cost floor. 8 symbols x ~92 validation days x cap8/day = up to 5888 possible entries; sprint04/13/16/17 realized 5803-7269 trades under identical caps/basket, so n>=300 is near-certain.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "breakout",
+ "params": {
+  "window": 60
+ },
+ "hold_minutes": 60,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8
+}

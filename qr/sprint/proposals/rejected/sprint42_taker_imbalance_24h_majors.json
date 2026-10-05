@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint42_taker_imbalance_24h_majors",
+  "hypothesis": "Extreme z-scored taker-buy imbalance (smooth 60m, z>2.5 vs 1440m) predicts multi-day-lag continuation (EFMA 2025). All prior taker_imbalance specs held <=15m where T2 costs (~26bp) swamp the ~33bp bar dispersion; a 24h hold amortizes cost ~100x. New mechanism: horizon, not a retread of sprint05-23.",
+  "power_argument": "24h return std ~300bp on majors (estimate). n=300 gives SE ~17bp, so min detectable edge at t=2 is ~35bp, above the ~26bp T2 cost floor. 8 symbols x cap 2/day x ~92 validation days allows up to 1472 entries; z>2.5 frequency should realize 300-700. Overlapping holds across correlated majors reduce effective n; the spec must be read with that. If realized n<300 the validator rejects it.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT",
+   "BNBUSDT",
+   "SOLUSDT",
+   "XRPUSDT",
+   "ADAUSDT",
+   "DOGEUSDT",
+   "LTCUSDT"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "smooth": 60,
+   "z_window": 1440,
+   "threshold": 2.5
+  },
+  "hold_minutes": 1440,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 2
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

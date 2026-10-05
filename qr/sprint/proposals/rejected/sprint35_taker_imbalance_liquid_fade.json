@@ -1,0 +1,29 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_fade",
+  "hypothesis": "Extreme taker buy/sell volume imbalance in liquid large-cap/ETF names is followed by short-horizon price reversion (fade), net of T1 costs, because aggressive order flow exhausts touch liquidity rather than signaling informed continuation.",
+  "power_argument": "Prior order-flow-adjacent tests (sprint32/34) showed per-trade sigma ~80-100bps (t=-18 to -20 at n=1600-4200). At n>=300 this implies a detectable edge floor of ~10-15bps at t=2, comfortably below the 20-40bps typical claimed magnitude for order-flow reversion signals, so the design is powered to reject or confirm.",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA",
+   "AMZN",
+   "GOOGL",
+   "META"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "lookback_min": 5,
+   "zscore_threshold": 1.5,
+   "direction": "fade"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 3
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

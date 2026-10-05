@@ -1,0 +1,26 @@
+{
+ "spec": {
+  "name": "sprint35_taker_imbalance_liquid_majors",
+  "hypothesis": "Short-horizon taker buy/sell volume imbalance predicts 10-min forward returns in the most liquid names, surviving costs where tail-liquidity baskets could not.",
+  "power_argument": "n_expected>=300 (5 symbols x ~6 entries/day x ~21d window); MDE~9.2bps at t=2 using sprint34 per-trade sd=79.6bps as prior",
+  "symbols": [
+   "SPY",
+   "QQQ",
+   "AAPL",
+   "MSFT",
+   "NVDA"
+  ],
+  "signal": "taker_imbalance",
+  "params": {
+   "window_min": 5,
+   "entry_threshold": 0.15,
+   "direction": "with_imbalance"
+  },
+  "hold_minutes": 10,
+  "fee_tier": "T1",
+  "entry_per_day_cap": 6
+ },
+ "errors": [
+  "closed-door terms ['taker_imbalance']: registry says these families are dead at daily frequency; a NEW mechanism must be argued explicitly"
+ ]
+}

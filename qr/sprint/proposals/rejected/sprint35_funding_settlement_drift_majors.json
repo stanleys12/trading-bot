@@ -1,0 +1,25 @@
+{
+ "spec": {
+  "name": "sprint35_funding_settlement_drift_majors",
+  "status": "DRAFTED_NOT_SUBMITTED",
+  "hypothesis": "Perpetual funding settles every 8h (00:00/08:00/16:00 UTC); traders adjust positions around settlement to capture/avoid the payment, creating short-horizon directional flow signed by the about-to-settle funding rate. Distinct mechanism from qhour_open (VWAP-slicing, unrelated to funding) and from sprint05-08's carry (weekly cross-sectional rotation, not intraday timing) -- not a permutation of a closed family.",
+  "power_argument": "C0/C1 calibration: net_bps dispersion ~26-33bp std, T2 cost floor ~26bp -> min detectable edge at n=300, t=2 is ~2*30/sqrt(300)=3.46bp, below the cost floor, so the design can detect any deployable edge without being unfalsifiable. 3 settlements/day x 2 symbols x ~92 validation days x cap1/settlement = up to 552 possible entries; even at 60% qualifying-rate this clears the 300 floor.",
+  "symbols": [
+   "BTCUSDT",
+   "ETHUSDT"
+  ],
+  "signal": "funding_settlement_drift",
+  "params": {
+   "window_pre_minutes": 15,
+   "window_post_minutes": 15,
+   "direction": "sign_of_funding_rate"
+  },
+  "hold_minutes": 30,
+  "fee_tier": "T2",
+  "entry_per_day_cap": 3,
+  "hard_blocker": "signal not in factory.py SIGNALS dict yet -- needs sig_funding_settlement() added (fundingRate loader already exists in carry.py). Do NOT submit to proposals/ until added."
+ },
+ "errors": [
+  "unknown signal funding_settlement_drift"
+ ]
+}

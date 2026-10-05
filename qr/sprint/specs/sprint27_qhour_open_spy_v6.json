@@ -1,0 +1,17 @@
+{
+ "name": "sprint27_qhour_open_spy_v6",
+ "hypothesis": "Quarter-hour boundary VWAP-slicing algo flow (arXiv 2607.09426) predicts 15m drift on SPY RTH bars. Identical frozen params to sprint15/24/25.",
+ "power_argument": "SPY 15m return stdev ~15bp; SE at n=300 ~0.87bp, min detectable edge at t=2 ~1.7bp, well below the ~26bp T2 cost floor (C0/C1 calibration). 26 boundary bars/day RTH x cap8/day x ~63 validation days = up to 504 possible entries, clears the 300 floor.",
+ "symbols": [
+  "SPY"
+ ],
+ "signal": "qhour_open",
+ "params": {
+  "lookback": 15,
+  "imb_min": 0.03
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 8,
+ "prerequisite": "BLOCKED until data.py gains a free equity 1m RTH loader (Alpaca IEX). Do not register/run before that lands \u2014 4th attempt, same defect as sprint11/14/24."
+}

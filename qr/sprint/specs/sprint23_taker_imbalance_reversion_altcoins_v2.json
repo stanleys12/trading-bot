@@ -1,0 +1,24 @@
+{
+ "name": "sprint23_taker_imbalance_reversion_altcoins_v2",
+ "hypothesis": "Mean-reversion after extreme taker imbalance on altcoins; sprint19 never ran (symbols registered as a string, 0 loads, CONFIRMED DATA-DEFECT, same class as sprint21). Last untested cell in taker_imbalance x {continuation,reversion} x {majors,altcoins}; other 3 cells all FAIL well-powered.",
+ "power_argument": "sprint21 back-solves altcoin per-trade sigma ~28bps. At n=300, 80% power, two-sided 5%: min detectable edge = 2.8*28/sqrt(300) ~= 4.5bps net, inside T1 fee floor. sprint22's identical fade_extreme/p90 design on 2 majors realized 475 trades in ~90d; scaling to 8 altcoin symbols (sprint13 realized 7269 trades on this basket at looser cap) projects >=300 with wide margin.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "imbalance_threshold": "p90",
+  "lookback_window_minutes": 5,
+  "direction": "fade_extreme"
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T1",
+ "entry_per_day_cap": 3
+}

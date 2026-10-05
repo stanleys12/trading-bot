@@ -1,0 +1,24 @@
+{
+ "name": "sprint21_taker_imbalance_continuation_altcoins_v2",
+ "hypothesis": "Extreme smoothed taker-buy volume imbalance (order-flow, EFMA 2025) predicts short-horizon continuation on liquid altcoins; sprint19 never tested this (symbols field was a string, iterated as characters -> 0 loads).",
+ "power_argument": "sprint18 realized 5866 validation trades on this identical 8-symbol basket/window with cap=8/day, so data loads cleanly. Prior artifacts back-solve per-trade stdev ~60bps (sprint18: 28.25*sqrt(5866)/35.805=60.4bps). At n=300, t=2, two-sided: min detectable edge = 2*60/sqrt(300) ~= 6.9bps net, well inside range. threshold=2.0 (~top 2-3% of smoothed z) with cap=5/day/symbol x 8 symbols x ~92 validation days (up to 3680 slots) should clear 300 easily.",
+ "symbols": [
+  "ADAUSDT",
+  "AVAXUSDT",
+  "BNBUSDT",
+  "DOGEUSDT",
+  "LINKUSDT",
+  "LTCUSDT",
+  "SOLUSDT",
+  "XRPUSDT"
+ ],
+ "signal": "taker_imbalance",
+ "params": {
+  "smooth": 30,
+  "z_window": 1440,
+  "threshold": 2.0
+ },
+ "hold_minutes": 15,
+ "fee_tier": "T2",
+ "entry_per_day_cap": 5
+}
