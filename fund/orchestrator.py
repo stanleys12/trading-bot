@@ -24,6 +24,7 @@ ROSTER = json.loads((HERE / "roster.json").read_text())
 SEATS, SCHED = ROSTER["seats"], ROSTER["schedule"]
 STATE_F = HERE / "state.json"
 TIMEOUT = 300
+SPEC_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*")
 
 
 def claude_bin() -> str:
@@ -86,6 +87,26 @@ def _extract_tail(memo: str):
             return json.loads(c)
         except Exception:
             continue
+    return None
+
+
+def queue_proposal(memo: str):
+    """Drop the first spec fence in a research_lead memo into the sprint
+    proposals queue. The name becomes a filename, so it must be a plain
+    token: agent output never picks a path outside proposals/."""
+    for block in re.findall(r"```(?:json)?\s*([\s\S]*?)```", memo):
+        try:
+            cand = json.loads(block)
+        except Exception:
+            continue
+        if isinstance(cand, dict) and "signal" in cand and "name" in cand:
+            name = cand["name"]
+            if not (isinstance(name, str) and SPEC_NAME.fullmatch(name)):
+                feed(f"research_lead spec name {name!r} refused (unsafe filename)")
+                return None
+            (ROOT / "qr/sprint/proposals" / f"{name}.json"
+             ).write_text(json.dumps(cand, indent=1))
+            return name
     return None
 
 
@@ -237,16 +258,9 @@ def run_solo(seat, briefing, now):
         else ("all clear" if r["tail"].get("all_clear") else "filed")
     feed(f"{seat} filed ({r['secs']}s) — {head}")
     if seat == "research_lead" and r["ok"]:
-        for block in re.findall(r"```(?:json)?\s*([\s\S]*?)```", r["memo"]):
-            try:
-                cand = json.loads(block)
-            except Exception:
-                continue
-            if isinstance(cand, dict) and "signal" in cand and "name" in cand:
-                (ROOT / "qr/sprint/proposals" / f"{cand['name']}.json"
-                 ).write_text(json.dumps(cand, indent=1))
-                feed(f"research_lead proposed spec '{cand['name']}' -> queued")
-                break
+        name = queue_proposal(r["memo"])
+        if name:
+            feed(f"research_lead proposed spec '{name}' -> queued")
     if seat == "chief_of_desk" and r["ok"]:
         (HERE / "reports" / "desk_note_latest.md").write_text(
             f"({now:%Y-%m-%d %H:%M} staggered)\n\n{r['memo']}")
@@ -403,16 +417,7 @@ def main():
 
     for r in results:
         if r["seat"] == "research_lead" and r["ok"]:
-            m = re.findall(r"```(?:json)?\s*([\s\S]*?)```", r["memo"])
-            for block in m:
-                try:
-                    cand = json.loads(block)
-                except Exception:
-                    continue
-                if isinstance(cand, dict) and "signal" in cand and "name" in cand:
-                    (ROOT / "qr/sprint/proposals" / f"{cand['name']}.json"
-                     ).write_text(json.dumps(cand, indent=1))
-                    break
+            queue_proposal(r["memo"])
 
     alerts, proposals = [], []
     for r in results:
