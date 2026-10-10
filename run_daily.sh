@@ -9,9 +9,9 @@
 # re-running after a failure is safe by construction. Four attempts, ten
 # minutes apart, covers ~40 minutes of API flakiness without extending past
 # the trading morning.
-cd /Users/stanleyshen/trading-bot
+cd "$(dirname "$0")" || exit 1
 
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 LOG=qr/reports/live/cron.log
 
 for attempt in 1 2 3 4; do

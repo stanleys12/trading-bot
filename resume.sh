@@ -5,5 +5,5 @@ for l in com.stanleyshen.tradingbot.daily com.stanleyshen.tradingbot.crypto com.
   launchctl enable gui/$U/$l
   launchctl bootstrap gui/$U ~/Library/LaunchAgents/$l.plist 2>/dev/null
 done
-rm -f /Users/stanleyshen/trading-bot/PAUSED
+rm -f "$(dirname "$0")"/PAUSED
 echo "trading bot resumed $(date)"

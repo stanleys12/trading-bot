@@ -5,4 +5,4 @@ for l in com.stanleyshen.tradingbot.daily com.stanleyshen.tradingbot.crypto com.
   launchctl disable gui/$U/$l
   launchctl bootout gui/$U/$l 2>/dev/null
 done
-echo "trading bot paused $(date)" | tee -a /Users/stanleyshen/trading-bot/PAUSED
+echo "trading bot paused $(date)" | tee -a "$(dirname "$0")"/PAUSED

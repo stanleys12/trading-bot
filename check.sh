@@ -4,8 +4,8 @@
 # 2026-08-26: reads daily_v2. The old `daily` table conflated all three books
 # in one account and benchmarked against a ONE-MINUTE SPY bar; its numbers
 # are not usable. It is retained in the DB as a record of what was reported.
-cd /Users/stanleyshen/trading-bot
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+cd "$(dirname "$0")" || exit 1
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 $PY -W ignore - <<'PYEOF'
 import sys; sys.path.insert(0,'.')
 import numpy as np, pandas as pd

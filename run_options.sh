@@ -3,9 +3,9 @@
 # 06:50 PT weekdays -- after the open, after the crypto/equity runs.
 # Same retry rationale as the other runners: the book reconciles state
 # (shares held, calls short, resting orders) so re-running is safe.
-cd /Users/stanleyshen/trading-bot
+cd "$(dirname "$0")" || exit 1
 
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 LOG=qr/reports/live/options_cron.log
 
 for attempt in 1 2 3; do

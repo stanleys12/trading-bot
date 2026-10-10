@@ -4,9 +4,9 @@
 # session close and the 7-day evaluation grid can land on a weekend.
 # Same retry rationale as run_daily.sh: the runner reconciles positions to
 # the grid target, so re-running after a transient failure is safe.
-cd /Users/stanleyshen/trading-bot
+cd "$(dirname "$0")" || exit 1
 
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 LOG=qr/reports/live/crypto_cron.log
 
 for attempt in 1 2 3; do
