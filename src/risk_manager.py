@@ -6,7 +6,7 @@ This module has VETO POWER over all trades — no trade executes without approva
 """
 
 import logging
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from zoneinfo import ZoneInfo
 from dataclasses import dataclass, field
 from typing import Optional
