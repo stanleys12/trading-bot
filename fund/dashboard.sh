@@ -12,8 +12,8 @@ if [ ! -x "$TMUX_BIN" ] && [ ! -x /usr/local/bin/tmux ]; then
   exit 1
 fi
 [ -x "$TMUX_BIN" ] || TMUX_BIN=/usr/local/bin/tmux
-R=/Users/stanleyshen/trading-bot
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+R=$(cd "$(dirname "$0")/.." && pwd) || exit 1
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 S=fund
 "$TMUX_BIN" has-session -t ${S} 2>/dev/null && { [ -t 0 ] && exec "$TMUX_BIN" attach -t ${S} || { echo "session '${S}' already running; attach with: tmux attach -t fund"; exit 0; }; }
 

@@ -1,8 +1,8 @@
 #!/bin/zsh
 # The wall: 20 tiles, one per agent, latest memo in each. Session: fund20
 TMUX_BIN=$(command -v tmux || echo $HOME/.local/bin/tmux)
-R=/Users/stanleyshen/trading-bot
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+R=$(cd "$(dirname "$0")/.." && pwd) || exit 1
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 S=fund20
 "$TMUX_BIN" has-session -t ${S} 2>/dev/null && { [ -t 0 ] && exec "$TMUX_BIN" attach -t ${S} || { echo "already running; attach with: tmux attach -t fund20"; exit 0; }; }
 SEATS=(chief_of_desk risk_officer execution_verifier measurement_auditor ops_engineer equity_pm crypto_pm options_pm scout_equity scout_crypto scout_macro news_analyst research_lead quant_a quant_b red_team backtest_auditor evals_steward coach scribe)

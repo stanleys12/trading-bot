@@ -6,8 +6,8 @@
 #   desk note      | sprint verdicts     | orchestrator log
 #   talk shell     | all 3 book logs     | decision journal
 TMUX_BIN=$(command -v tmux || echo $HOME/.local/bin/tmux)
-R=/Users/stanleyshen/trading-bot
-PY=/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+R=$(cd "$(dirname "$0")/.." && pwd) || exit 1
+PY=${PY:-/Library/Frameworks/Python.framework/Versions/3.13/bin/python3}
 S=fund1
 "$TMUX_BIN" has-session -t ${S} 2>/dev/null && { [ -t 0 ] && exec "$TMUX_BIN" attach -t ${S} || { echo "already running; attach with: tmux attach -t fund1"; exit 0; }; }
 
